@@ -1,0 +1,135 @@
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <span class="sidebar-brand d-flex align-items-center justify-content-center">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Pari
+            <sup>local</sup>
+        </div>
+    </span>
+    <hr class="sidebar-divider my-0">
+    <li class="nav-item">
+        <a class="nav-link" href="/home">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Home</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link" href="/profil">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Profil</span>
+        </a>
+    </li>
+    
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="modal" data-target=".demandeJeton">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Demande de jeton</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link" href="/historique">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Historique de vos paris</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-fw fa-sign-out-alt"></i>
+            <span>Deconnecter</span>
+        </a>
+    </li>
+
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">close/open</div>
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle" onClick="toogledSide()"></button>
+    </div>
+</ul>
+<!-- End of Sidebar -->
+
+<div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" onClick="toogledSide()">
+                <i class="fa fa-bars"></i>
+            </button>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown no-arrow">
+                    <span class="nav-link">
+                        <span class="text-gray-600 small">
+                            <i class="fas fa-search fa-sm"></i> Vola</span>
+                    </span>
+                </li>
+                <div class="topbar-divider d-none d-sm-block"></div>
+                <li class="nav-item dropdown no-arrow">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">nom utilisateur</span>
+                        <img class="img-profile rounded-circle" src="./assets/img/undraw_profile.svg">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">Voulez-vous vraiment vous déconnecter?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Selectionner "Oui" si vous-voulez terminer avec cette session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Non</button>
+                <button class="btn btn-primary" type="button" data-dismiss="modal" (click)="deconnecter()">oui</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- DemandeJeton Modal -->
+<div class="modal fade demandeJeton" tabindex="-1" role="dialog" aria-labelledby="demandeJetonLabel" aria-hidden="true" #modal>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Faite votre demande</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Jeton:</label>
+                        <input type="number" class="form-control" value="1">
+                    </div>
+                    <button type="submit" class="btn btn-success floatRight">Valider</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <script src="../../../assets/vendor/jquery/jquery.min.js"></script>
+<script src="../../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../../assets/js/sb-admin-2.js"></script>
+<script src="../../../assets/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="../../../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="../../../assets/js/datatables-demo.js"></script> -->
+ 

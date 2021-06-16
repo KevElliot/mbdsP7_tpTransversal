@@ -78,4 +78,32 @@ class EquipeApiController {
         }
         return response.status = HttpServletResponse.SC_NOT_ACCEPTABLE
     }
+
+    def equipes() {
+        switch (request.getMethod()) {
+            case "POST":
+                def equipeAsJson = request.getJSON()
+                equipeAsJson.each {
+                    equipe ->
+                        def equipeInstance = new Equipe(
+                                nom: equipe.nom,
+                                note: equipe.note
+                        )
+                }
+                break
+            case "GET":
+                def equipesInstance = Equipe.getAll()
+                if (!equipesInstance)
+                    return response.status = HttpServletResponse.SC_NOT_FOUND
+                response.withFormat {
+                    xml { render EquipesInstance as XML }
+                    json { render EquipesInstance as JSON }
+                }
+                serializeData(equipesInstance, request.getHeader("Accept"))
+                break
+            default:
+                return response.status = HttpServletResponse.SC_METHOD_NOT_ALLOWED
+                break
+        }
+    }
 }

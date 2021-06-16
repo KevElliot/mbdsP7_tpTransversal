@@ -37,7 +37,7 @@ class EquipeController {
 
         request.withFormat {
             form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'equipe.label', default: 'Equipe'), equipe.id])
+                //flash.message = message(code: 'default.created.message', args: [message(code: 'equipe.id', default: 'Equipe'), equipe.id])
                 redirect equipe
             }
             '*' { respond equipe, [status: CREATED] }

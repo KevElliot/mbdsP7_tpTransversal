@@ -3,16 +3,15 @@ package itu.mbds.tpt
 import grails.gorm.services.Service
 import grails.gorm.transactions.Transactional
 
-@Service(Equipe)
-interface EquipeService {
+@Service(Match)
+interface MatchService {
+    Match get(Serializable id)
 
-    Equipe get(Serializable id)
-
-    List<Equipe> list(Map args)
+    List<Match> list(Map args)
 
     Long count()
 
     void delete(Serializable id)
 
-    Equipe save(Equipe equipe)
+    Match save(Match match)
 }

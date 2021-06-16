@@ -3,16 +3,16 @@ package itu.mbds.tpt
 import grails.gorm.services.Service
 import grails.gorm.transactions.Transactional
 
-@Service(Equipe)
-interface EquipeService {
+@Service(Paris)
+interface ParisService {
 
-    Equipe get(Serializable id)
+    Paris get(Serializable id)
 
-    List<Equipe> list(Map args)
+    List<Paris> list(Map args)
 
     Long count()
 
     void delete(Serializable id)
 
-    Equipe save(Equipe equipe)
+    Paris save(Paris paris)
 }

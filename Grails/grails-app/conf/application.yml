@@ -101,6 +101,7 @@ dataSource:
     pooled: true
     jmxExport: true
     driverClassName: oracle.jdbc.OracleDriver
+    dialect: org.hibernate.dialect.Oracle12cDialect
     username: c##mbds
     password: mbds
 

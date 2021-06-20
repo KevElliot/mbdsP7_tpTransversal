@@ -2,6 +2,7 @@ package itu.mbds.tpt
 
 import grails.converters.JSON
 import grails.converters.XML
+import grails.gorm.transactions.Transactional
 import grails.validation.ValidationException
 import org.springframework.web.bind.annotation.CrossOrigin
 
@@ -11,10 +12,12 @@ import static org.springframework.http.HttpStatus.NO_CONTENT
 import static org.springframework.http.HttpStatus.OK
 
 @CrossOrigin(origins="*")
+@Transactional
 class MatchApiController {
     MatchService matchService
+    MatchApiService matchApiService
 
-    def Match() {
+    def match() {
         switch (request.getMethod()) {
             case "GET":
                 if (!params.id)
@@ -40,7 +43,7 @@ class MatchApiController {
                 matchInstance.cotev2 = matchAsJson.cotev2
                 matchInstance.cotex = matchAsJson.cotex
                 matchInstance.resultat = matchAsJson.resultat
-                matchService.save(matchInstance)
+                matchApiService.save(matchInstance)
                 if (!matchInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
@@ -91,10 +94,53 @@ class MatchApiController {
                 matchService.delete(params.id)
                 return response.status = HttpServletResponse.SC_OK
                 break
+            case "POST":
+
             default:
                 return response.status = HttpServletResponse.SC_METHOD_NOT_ALLOWED
                 break
         }
-        return response.status = HttpServletResponse.SC_NOT_ACCEPTABLE
+        //return response.status = HttpServletResponse.SC_NOT_ACCEPTABLE
+    }
+
+    def matchs() {
+        switch (request.getMethod()) {
+            case "POST":
+                println "POST"
+                def matchsAsJson = request.getJSON()
+                println matchsAsJson
+                //List<Equipe> listes = JSON.parse(equipeAsJson) as List<Equipe>
+                matchApiService.saveAll(matchsAsJson)
+                break
+            case "GET":
+                println "GET matchs"
+                def matchsInstance = Match.getAll()
+                if (!matchsInstance)
+                    println "Nothing"
+                    //return response.status = HttpServletResponse.SC_NOT_FOUND
+                response.withFormat {
+                    xml { render matchsInstance as XML }
+                    json { render matchsInstance as JSON }
+                }
+                serializeData(matchsInstance, request.getHeader("Accept"))
+                break
+            default:
+                return response.status = HttpServletResponse.SC_METHOD_NOT_ALLOWED
+                break
+        }
+    }
+    def serializeData(object, format) {
+        switch (format) {
+            case 'json':
+            case 'application/json':
+            case 'text/json':
+                render object as JSON
+                break
+            case 'xml':
+            case 'application/xml':
+            case 'text/xml':
+                render object as XML
+                break
+        }
     }
 }

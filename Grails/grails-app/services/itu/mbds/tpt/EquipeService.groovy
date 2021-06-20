@@ -4,6 +4,7 @@ import grails.gorm.services.Service
 import grails.gorm.transactions.Transactional
 
 @Service(Equipe)
+@Transactional
 interface EquipeService {
 
     Equipe get(Serializable id)

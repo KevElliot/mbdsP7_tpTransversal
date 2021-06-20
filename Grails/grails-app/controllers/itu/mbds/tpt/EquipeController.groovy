@@ -1,8 +1,10 @@
 package itu.mbds.tpt
 
+import grails.gorm.transactions.Transactional
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
 
+@Transactional
 class EquipeController {
 
     EquipeService equipeService
@@ -29,7 +31,7 @@ class EquipeController {
         }
 
         try {
-            equipeService.save(equipe)
+            equipe.save();
         } catch (ValidationException e) {
             respond equipe.errors, view:'create'
             return

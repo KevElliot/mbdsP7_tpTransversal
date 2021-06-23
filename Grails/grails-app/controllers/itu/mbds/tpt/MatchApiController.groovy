@@ -23,6 +23,7 @@ class MatchApiController {
                 if (!params.id)
                     return response.status = HttpServletResponse.SC_BAD_REQUEST
                 def matchInstance = Match.get(params.id)
+                println "Nom : "+matchInstance
                 if (!matchInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {

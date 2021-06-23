@@ -19,4 +19,8 @@ class Match {
         datematch nullable: true, blank: true
         lieumatch nullable: true, blank: true
     }
+    static mapping = {
+        equipe1 lazy: false
+        equipe2 lazy: false
+    }
 }

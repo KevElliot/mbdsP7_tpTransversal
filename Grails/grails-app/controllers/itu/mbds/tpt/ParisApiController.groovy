@@ -36,6 +36,25 @@ class ParisApiController {
         }
         //return response.status = HttpServletResponse.SC_NOT_ACCEPTABLE
     }
+    def listeParis() {
+        switch (request.getMethod()) {
+            case "GET":
+                println "GET matchs"
+                def parisInstance = Paris.getAll()
+                if (!parisInstance)
+                    println "Nothing"
+                //return response.status = HttpServletResponse.SC_NOT_FOUND
+                response.withFormat {
+                    xml { render parisInstance as XML }
+                    json { render parisInstance as JSON }
+                }
+                serializeData(parisInstance, request.getHeader("Accept"))
+                break
+            default:
+                return response.status = HttpServletResponse.SC_METHOD_NOT_ALLOWED
+                break
+        }
+    }
     def serializeData(object, format) {
         switch (format) {
             case 'json':

@@ -6,6 +6,8 @@ import org.grails.web.json.JSONArray
 @Transactional
 class MatchApiService {
 
+    def sessionFactory
+
     def save(Match match){
         match.save(failOnError: true)
         match.errors.allErrors
@@ -34,9 +36,25 @@ class MatchApiService {
         }
     }
     def resultat(Match match){
+        def matchOld= Match.get(match.id)
+        def detailsParis= Detailsparis.findAllByMatch(matchOld)
+        detailsParis.each {details ->
+            if(match.resultat.equals(details.prono)){
+                details.gain='OK'
+            } else{
+                details.gain='KO'
 
+            }
+            //details.save(flush:true)
+
+        }
     }
     def updateCote(Match match, String prono){
 
+    }
+    def updateDetailsParisKO(String prono,Integer match_id){
+        final session = sessionFactory.currentSession
+        String query="update detailsparis set gain='KO' where prono <>'"+prono+"' and match_id="+match_id
+        session.execute(query);
     }
 }

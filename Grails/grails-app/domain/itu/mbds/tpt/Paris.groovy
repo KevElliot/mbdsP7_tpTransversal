@@ -15,4 +15,7 @@ class Paris {
         code  nullable: true, blank: true
         gain  nullable: true, blank: true
     }
+    static mapping = {
+        id generator: 'sequence', params:[sequence:'PARIS_SEQ']
+    }
 }

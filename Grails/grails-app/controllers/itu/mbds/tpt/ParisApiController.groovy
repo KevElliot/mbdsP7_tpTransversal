@@ -4,6 +4,7 @@ import grails.converters.JSON
 import grails.converters.XML
 import grails.gorm.transactions.Transactional
 import org.springframework.web.bind.annotation.CrossOrigin
+import javax.servlet.http.HttpServletResponse
 
 @CrossOrigin(origins="*")
 @Transactional

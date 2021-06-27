@@ -4,6 +4,7 @@ import grails.converters.JSON
 import grails.converters.XML
 import grails.gorm.transactions.Transactional
 import org.springframework.web.bind.annotation.CrossOrigin
+import javax.servlet.http.HttpServletResponse
 
 @CrossOrigin(origins="*")
 @Transactional
@@ -81,8 +82,10 @@ class EquipeApiController {
                 break
             case "POST":
                 def equipeAsJson = request.getJSON()
-
-                equipeApiService.save(equipeAsJson)
+                def equipeInstance = new Equipe()
+                equipeInstance.nom=equipeAsJson.nom
+                equipeInstance.note=equipeAsJson.note
+                equipeApiService.save(equipeInstance)
                 return response.status = HttpServletResponse.SC_OK
                 break
             default:

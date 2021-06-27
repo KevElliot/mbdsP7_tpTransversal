@@ -10,4 +10,7 @@ class Detailsparis {
         gain  nullable: true, blank: true
         paris  nullable: true, blank: true
     }
+    static mapping = {
+        id generator: 'sequence', params:[sequence:'DETAILSPARIS_SEQ']
+    }
 }

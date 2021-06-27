@@ -102,14 +102,14 @@ dataSource:
     jmxExport: true
     driverClassName: oracle.jdbc.OracleDriver
     dialect: org.hibernate.dialect.Oracle12cDialect
-    username: c##mbds
-    password: mbds
+    username: RazafyMI2021
+    password: RazafyMI202101
 
 environments:
     development:
         dataSource:
             dbCreate: update
-            url: jdbc:oracle:thin:@localhost:1521:orcl
+            url: jdbc:oracle:thin:@144.21.67.201:1521/pdbitu.631174089.oraclecloud.internal
     test:
         dataSource:
             dbCreate: update

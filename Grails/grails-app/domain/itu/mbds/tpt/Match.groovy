@@ -9,6 +9,7 @@ class Match {
     float cotex
     Date datematch
     String lieumatch
+    Integer fini
     static constraints = {
         equipe1  nullable: true, blank: true
         equipe2  nullable: true, blank: true
@@ -20,6 +21,7 @@ class Match {
         lieumatch nullable: true, blank: true
     }
     static mapping = {
+        id generator: 'sequence', params:[sequence:'MATCH_SEQ']
         equipe1 lazy: false
         equipe2 lazy: false
     }

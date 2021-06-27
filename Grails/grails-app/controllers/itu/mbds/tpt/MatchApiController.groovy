@@ -10,6 +10,7 @@ import static org.springframework.http.HttpStatus.CREATED
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.NO_CONTENT
 import static org.springframework.http.HttpStatus.OK
+import javax.servlet.http.HttpServletResponse
 
 @CrossOrigin(origins="*")
 @Transactional
@@ -115,7 +116,7 @@ class MatchApiController {
                 break
             case "GET":
                 println "GET matchs"
-                def matchsInstance = Match.getAll()
+                def matchsInstance = Match.findAllByFini(0)
                 if (!matchsInstance)
                     println "Nothing"
                     //return response.status = HttpServletResponse.SC_NOT_FOUND

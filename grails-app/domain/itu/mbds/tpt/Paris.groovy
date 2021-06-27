@@ -11,6 +11,7 @@ class Paris {
     Integer nbgain
     Integer nbperdu
     static hasMany = [detailsparis: Detailsparis]
+    Double gainpossible
     static constraints = {
         code  nullable: true, blank: true
         gain  nullable: true, blank: true

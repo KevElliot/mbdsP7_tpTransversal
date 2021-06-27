@@ -17,8 +17,9 @@ class ParisApiController {
         switch (request.getMethod()) {
             case "GET":
                 println new Date()
-                if (!params.idclient)
+                if (!params.id)
                     return response.status = HttpServletResponse.SC_BAD_REQUEST
+                def parisInstance = Paris.get(params.id)
                 serializeData(parisInstance, request.getHeader("Accept"))
                 break
                 break
@@ -41,10 +42,19 @@ class ParisApiController {
         switch (request.getMethod()) {
             case "GET":
                 println "GET matchs"
+                if (params.idclient){
+                    def liste= Paris.findAllByIdclient(params.idclient)
+                    response.withFormat {
+                        xml { render liste as XML }
+                        json { render liste as JSON }
+                    }
+                    serializeData(liste, request.getHeader("Accept"))
+                }
+
                 def parisInstance = Paris.getAll()
                 if (!parisInstance)
                     println "Nothing"
-                //return response.status = HttpServletResponse.SC_NOT_FOUND
+                    return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
                     xml { render parisInstance as XML }
                     json { render parisInstance as JSON }

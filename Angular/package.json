@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "~11.2.13",
     "@angular/router": "~11.2.13",
     "@material/card": "^11.0.0",
+    "@techiediaries/ngx-qrcode": "^9.1.0",
     "angular-material": "^1.2.2",
     "ng2-modal-module": "^1.0.1",
     "rxjs": "~6.6.0",

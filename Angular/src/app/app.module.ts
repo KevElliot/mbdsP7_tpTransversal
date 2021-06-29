@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ParieComponent } from './parie/parie.component';
 import { LoginComponent } from './login/login.component';
+import { HttpClientModule } from '@angular/common/http';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { DetailParieComponent } from './parie/detail-parie/detail-parie.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { HistoriqueParieComponent } from './parie/historique-parie/historique-parie.component';
 import { ProfilComponent } from './profil/profil.component';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 const routes:Routes = [
   {
@@ -54,13 +56,15 @@ const routes:Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MatCardModule,
     MatButtonModule,MatIconModule,
     FormsModule, ReactiveFormsModule,
     MatInputModule,MatStepperModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgxQRCodeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

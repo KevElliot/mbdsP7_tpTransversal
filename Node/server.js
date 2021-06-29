@@ -54,6 +54,9 @@ app.route(prefix + '/auth/logout')
 app.route(prefix + '/user')
   .put(user.updateUser);
 
+app.route(prefix + '/parier')
+  .put(user.updateJetonUser);
+
 app.route(prefix + '/user/:id')
   .get(user.getUserById)
   .delete(user.deleteUser);

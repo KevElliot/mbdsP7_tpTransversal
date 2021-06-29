@@ -75,7 +75,22 @@ function updateUser(req, res) {
     }
   );
 }
-
+// Update jeton d'un user (PUT)
+function updateJetonUser(req, res) {
+  User.findByIdAndUpdate(
+    req.body._id,
+    req.body,
+    { new: true },
+    (err, user) => {
+      if (err) {
+        console.log(err);
+        res.send(err);
+      } else {
+        res.json({ message: "updated" });
+      }
+    }
+  );
+}
 // suppression d'un User (DELETE)
 function deleteUser(req, res) {
   //console.log(req.params.id);
@@ -114,6 +129,7 @@ module.exports = {
   register,
   logout,
   updateUser,
+  updateJetonUser,
   deleteUser,
   getUserById
 };

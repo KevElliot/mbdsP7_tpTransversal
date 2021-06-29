@@ -1,0 +1,11 @@
+<div widget class="card border-0 box-shadow">
+  <div class="card-header transparent border-0 text-muted">
+    <h5 class="mb-0">Les équipes de Foot</h5>
+  </div>
+  <div class="card-body pt-0 widget-body">
+    <div class="table-responsive">
+      <ng2-smart-table [settings]="settingEquipe" [source]="equipes" (createConfirm)="onCreateEquipe($event)" (editConfirm)="onEditEquipe($event)"
+                       (deleteConfirm)="onDeleteEquipe($event)"></ng2-smart-table>
+    </div>
+  </div>
+</div>

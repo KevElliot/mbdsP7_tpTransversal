@@ -45,7 +45,6 @@ class ParisApiController {
                 if (params.idclient){
                     def liste= Paris.findAllByIdclient(params.idclient)
                     response.withFormat {
-                        xml { render liste as XML }
                         json { render liste as JSON }
                     }
                     serializeData(liste, request.getHeader("Accept"))
@@ -56,7 +55,6 @@ class ParisApiController {
                     println "Nothing"
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
-                    xml { render parisInstance as XML }
                     json { render parisInstance as JSON }
                 }
                 serializeData(parisInstance, request.getHeader("Accept"))

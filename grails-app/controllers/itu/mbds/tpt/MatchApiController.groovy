@@ -28,7 +28,6 @@ class MatchApiController {
                 if (!matchInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
-                    xml { render matchInstance as XML }
                     json { render matchInstance as JSON }
                 }
                 serializeData(matchInstance, request.getHeader("Accept"))
@@ -49,7 +48,6 @@ class MatchApiController {
                 if (!matchInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
-                    xml { render matchInstance as XML }
                     json { render matchInstance as JSON }
                 }
                 serializeData(matchInstance, request.getHeader("Accept"))
@@ -78,7 +76,6 @@ class MatchApiController {
                 if (!matchInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
-                    xml { render matchInstance as XML }
                     json { render matchInstance as JSON }
                 }
                 serializeData(matchInstance, request.getHeader("Accept"))
@@ -90,7 +87,6 @@ class MatchApiController {
                 if (!matchInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
-                    xml { render matchInstance as XML }
                     json { render matchInstance as JSON }
                 }
                 matchService.delete(params.id)
@@ -121,7 +117,24 @@ class MatchApiController {
                     println "Nothing"
                     //return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
-                    xml { render matchsInstance as XML }
+                    json { render matchsInstance as JSON }
+                }
+                serializeData(matchsInstance, request.getHeader("Accept"))
+                break
+            default:
+                return response.status = HttpServletResponse.SC_METHOD_NOT_ALLOWED
+                break
+        }
+    }
+    def listeTotale() {
+        switch (request.getMethod()) {
+            case "GET":
+                println "GET matchs"
+                def matchsInstance = Match.getAll()
+                if (!matchsInstance)
+                    println "Nothing"
+                //return response.status = HttpServletResponse.SC_NOT_FOUND
+                response.withFormat {
                     json { render matchsInstance as JSON }
                 }
                 serializeData(matchsInstance, request.getHeader("Accept"))

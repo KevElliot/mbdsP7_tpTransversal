@@ -22,7 +22,6 @@ class EquipeApiController {
                 if (!equipeInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
-                    xml { render equipeInstance as XML }
                     json { render equipeInstance as JSON }
                 }
                 serializeData(equipeInstance, request.getHeader("Accept"))
@@ -41,7 +40,6 @@ class EquipeApiController {
                 equipeApiService.save(equipeInstance)
                 println "updated"
                 response.withFormat {
-                    xml { render equipeInstance as XML }
                     json { render equipeInstance as JSON }
                 }
                 serializeData(equipeInstance, request.getHeader("Accept"))
@@ -62,7 +60,6 @@ class EquipeApiController {
                 if (!equipeInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
-                    xml { render equipeInstance as XML }
                     json { render equipeInstance as JSON }
                 }
                 serializeData(equipeInstance, request.getHeader("Accept"))
@@ -74,7 +71,6 @@ class EquipeApiController {
                 if (!equipeInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
-                    xml { render equipeInstance as XML }
                     json { render equipeInstance as JSON }
                 }
                 equipeService.delete(params.id)
@@ -109,7 +105,6 @@ class EquipeApiController {
                 if (!equipesInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
-                    xml { render equipesInstance as XML }
                     json { render equipesInstance as JSON }
                 }
                 //serializeData(equipesInstance, request.getHeader("Accept"))

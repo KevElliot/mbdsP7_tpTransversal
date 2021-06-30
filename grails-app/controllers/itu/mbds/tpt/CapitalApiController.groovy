@@ -23,7 +23,6 @@ class CapitalApiController {
                 if (!capitalInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
-                    xml { render capitalInstance as XML }
                     json { render capitalInstance as JSON }
                 }
                 serializeData(capitalInstance, request.getHeader("Accept"))
@@ -39,7 +38,6 @@ class CapitalApiController {
                 capitalApiService.save(capitalInstance)
                 println "updated"
                 response.withFormat {
-                    xml { render capitalInstance as XML }
                     json { render capitalInstance as JSON }
                 }
                 serializeData(capitalInstance, request.getHeader("Accept"))

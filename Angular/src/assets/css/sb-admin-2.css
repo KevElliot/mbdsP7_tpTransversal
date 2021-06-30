@@ -11395,3 +11395,7 @@ body.sidebar-toggled footer.sticky-footer {
 .footCardParier{
   padding-left: 40px;
 }
+.bshadow img{
+  width: 160px;
+  height: 160px;
+}

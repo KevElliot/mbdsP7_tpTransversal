@@ -39,7 +39,7 @@ const routes:Routes = [
     component:HistoriqueParieComponent
   },
   {
-    path:"profil",
+    path:"profil/:id",
     component:ProfilComponent
   }
 ]

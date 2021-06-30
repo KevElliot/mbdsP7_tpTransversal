@@ -52,7 +52,8 @@ app.route(prefix + '/auth/logout')
   .post(user.logout);
 
 app.route(prefix + '/user')
-  .put(user.updateUser);
+  .put(user.updateUser)
+  .get(user.getUserActive);
 
 app.route(prefix + '/parier')
   .put(user.updateJetonUser);
@@ -60,6 +61,7 @@ app.route(prefix + '/parier')
 app.route(prefix + '/user/:id')
   .get(user.getUserById)
   .delete(user.deleteUser);
+
 
 // On démarre le serveur
 app.listen(port, "0.0.0.0");

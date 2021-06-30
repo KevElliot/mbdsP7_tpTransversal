@@ -27,7 +27,7 @@ function login (req, res) {
     var token = jwt.sign({ id: user._id }, config.secret, {
       expiresIn: 86400
     });
-    res.status(200).send({ auth: true,name: user.name,role: user.role, token: token });
+    res.status(200).send({ auth: true,_id:user._id,name: user.name,jetons:user.jetons,role: user.role, token: token });
   });
 
 };
@@ -43,6 +43,8 @@ function register (req, res) {
   user.password = hashedPassword;
   user.email = req.body.email;
   user.role = req.body.role;
+  user.image = req.body.image;
+  user.jetons = req.body.jetons;
   //console.log("POST user reçu :");
   //console.log(user);
 
@@ -59,7 +61,7 @@ function register (req, res) {
 // Update d'un user (PUT)
 function updateUser(req, res) {
   var hashedPassword = bcrypt.hashSync(req.body.password, 8);
-  req.body.password = hashedPassword,
+  req.body.password = hashedPassword;
   console.log(req.body);
   User.findByIdAndUpdate(
     req.body._id,
@@ -105,25 +107,27 @@ function deleteUser(req, res) {
 // Récupérer un user par son id (GET)
 function getUserById(req, res) {
   let userId = req.params.id;
-  var userInfo;
-  var detail;
+  User.findOne({ _id: userId }, (err, user) => {
+    if (err) {
+      return res.status(400).json({
+        status: 'error',
+        error: 'req body cannot be empty',
+      });
+    }
+    res.status(200).json(user)
+  });
+}
 
+function getUserActive(req, res) {
+  let userId = req.body._id;
+  console.log(userId);
   User.findOne({ _id: userId }, (err, user) => {
     if (err) {
       res.send(err);
     }
-    infoUser = user;
-  });
-  DetailUser.findOne({ _id: userId }, (err, detailUser) => {
-    if (err) {
-      res.send(err);
-    }
-    detail = detailUser;
-    var fitambarany = detail + userInfo;
-    res.send(fitambarany);
+    res.status(200).send({ user: user})
   });
 }
-
 module.exports = {
   login,
   register,
@@ -131,5 +135,6 @@ module.exports = {
   updateUser,
   updateJetonUser,
   deleteUser,
-  getUserById
+  getUserById,
+  getUserActive
 };

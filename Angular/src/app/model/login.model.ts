@@ -5,5 +5,5 @@ export class Login {
   email:string;
   role:string;
   image:string;
-  jeton:number
+  jetons:number
 }

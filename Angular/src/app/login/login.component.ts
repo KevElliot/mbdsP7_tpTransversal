@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../shared/auth.service';
-import { Login } from './login.model';
+import { Login } from '../model/login.model';
 
 @Component({
   selector: 'app-login',
@@ -44,20 +44,36 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/home']);
   }
   inscription() {
-      let nouvelAuthentification = new Login();
-      nouvelAuthentification.email = this.signin.value.email;
-      nouvelAuthentification.password = this.signin.value.password;
-      this.authService.authentification(nouvelAuthentification)
+      let user = new Login();
+      user.name = this.nom;
+      user.email = this.email;
+      user.password = this.firstFormGroup.value.password;
+      user.role = "joueur";
+      user.jetons = this.jeton;
+      user.image = "null";
+      this.authService.register(user)
+      .subscribe(
+        reponse => {
+          console.log(reponse);
+          alert("veuillez vous connecté!");
+          location.reload();
+        });
   }
   onSubmit() {
     if (this.signin.valid) {
       let nouvelAuthentification = new Login();
-      nouvelAuthentification.email = this.signin.value.email;
-      nouvelAuthentification.password = this.signin.value.password;
+      let user = new Login();
+      // nouvelAuthentification.email = this.signin.value.email;
+      // nouvelAuthentification.password = this.signin.value.password;
+      nouvelAuthentification.email = "tom@gmail.com";
+      nouvelAuthentification.password = "tom";
       this.authService.authentification(nouvelAuthentification)
         .subscribe(
           reponse => {
-            console.log(reponse);
+            sessionStorage.setItem('userActive',reponse._id);
+            sessionStorage.setItem('nom',reponse.name);
+            sessionStorage.setItem('jetons',reponse.jetons);
+            // this.router.navigate(["/home"],{queryParams:{data:reponse._id}});
             this.router.navigate(["/home"]);
           }, error => {
             this.champs = "Username or password is incorrect";

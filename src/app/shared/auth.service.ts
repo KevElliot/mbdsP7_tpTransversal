@@ -10,8 +10,9 @@ export class AuthService {
 
     constructor(private http: HttpClient) { }
     
-    uri = "http://localhost:8010/pariBack";
-
+    // uri = "http://localhost:8010/pariBack";
+    uri = "https://parilocalnode.herokuapp.com/pariBack";
+    
     authentification(login: any): Observable<any> {
         console.log("Authentification...")
         return this.http.post(this.uri + '/auth/login', login);

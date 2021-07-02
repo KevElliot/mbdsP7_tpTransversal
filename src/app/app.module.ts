@@ -15,6 +15,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { HistoriqueParieComponent } from './parie/historique-parie/historique-parie.component';
 import { ProfilComponent } from './profil/profil.component';
@@ -64,6 +65,7 @@ const routes:Routes = [
     FormsModule, ReactiveFormsModule,
     MatInputModule,MatStepperModule,
     MatFormFieldModule,
+    MatSlideToggleModule,
     NgxQRCodeModule
   ],
   providers: [],

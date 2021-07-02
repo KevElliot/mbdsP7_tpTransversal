@@ -65,8 +65,8 @@ export class LoginComponent implements OnInit {
       let user = new Login();
       // nouvelAuthentification.email = this.signin.value.email;
       // nouvelAuthentification.password = this.signin.value.password;
-      nouvelAuthentification.email = "tom@gmail.com";
-      nouvelAuthentification.password = "tom";
+      nouvelAuthentification.email = "jerry@gmail.com";
+      nouvelAuthentification.password = "jerry";
       this.authService.authentification(nouvelAuthentification)
         .subscribe(
           reponse => {

@@ -27,14 +27,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr *ngFor="let a of match">
                                     <td>Foot</td>
-                                    <td>Psg/Real</td>
-                                    <td class="center">1</td>
-                                    <td class="center">1.5</td>
-                                    <td class="center">2</td>
+                                    <td>{{a.equipe1.nom}}/{{a.equipe2.nom}}</td>
+                                    <td class="center">{{a.cotev1}}</td>
+                                    <td class="center">{{a.cotex}}</td>
+                                    <td class="center">{{a.cotev2}}</td>
                                     <td class="center">
-                                        <button type="button" class="btn btn-secondary" (click)="detailPari()">Voir</button>
+                                        <button type="button" class="btn btn-secondary" routerLink="/parie/{{a.id}}">Voir</button>
                                     </td>
                                 </tr>
                             </tbody>

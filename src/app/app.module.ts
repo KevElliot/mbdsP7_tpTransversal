@@ -32,7 +32,7 @@ const routes:Routes = [
     component:ParieComponent
   },
   {
-    path:"parie/:id",
+    path:"pari",
     component:DetailParieComponent
   },
   {

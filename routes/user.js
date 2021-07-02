@@ -4,7 +4,6 @@ var bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 var User = require('../model/user');
-var DetailUser = require('../model/detailUser');
 
 /**
  * Configure JWT
@@ -30,6 +29,20 @@ function login (req, res) {
     res.status(200).send({ auth: true,_id:user._id,name: user.name,jetons:user.jetons,role: user.role, token: token });
   });
 
+};
+function loginQr (req, res) {
+  User.findOne({ email: req.body.email }, function (err, user) {
+    if (err) return res.status(500).send('Error on the server.');
+    if (!user) return res.status(401).send('No user found.');
+    if (req.body.password==user.password) {
+      var token = jwt.sign({ id: user._id }, config.secret, {
+        expiresIn: 86400
+      });
+      res.status(200).send({ auth: true,_id:user._id,name: user.name,jetons:user.jetons,role: user.role, token: token });
+    }else{
+      return res.status(401).send({ auth: false, token: null });
+    }
+  });
 };
 
 function logout (req, res) {
@@ -130,6 +143,7 @@ function getUserActive(req, res) {
 }
 module.exports = {
   login,
+  loginQr,
   register,
   logout,
   updateUser,

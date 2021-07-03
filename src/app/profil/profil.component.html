@@ -9,9 +9,9 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-xl-4 col-lg-4 center">
-                            <img class="saryProfil" src="assets/img/profil/profil.JPG" alt="photo de profil">
-                            <ngx-qrcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value" cssClass="bshadow"></ngx-qrcode>
+                        <div class="col-xl-4 col-lg-4">
+                            <h4 class="m-0 font-weight-bold">Qr code</h4><hr/>
+                            <ngx-qrcode class="center" [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value" cssClass="bshadow"></ngx-qrcode>
                         </div>
                         <div class="col-xl-8 col-lg-8">
                             <form [formGroup]="formUpdateUser" class="user" (ngSubmit)="onSubmit()">

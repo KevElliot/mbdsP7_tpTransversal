@@ -24,30 +24,23 @@
                             <thead>
                                 <tr>
                                     <th>Categorie</th>
-                                    <th>Nom</th>
+                                    <th>Date</th>
                                     <th>Cote</th>
                                     <th>Jeton</th>
                                     <th>Gain</th>
-                                    <th>Rate</th>
+                                    <th>Statut</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr  *ngFor="let a of historique">
                                     <td>Foot</td>
-                                    <td>Psg/Real</td>
-                                    <td class="center">2.5</td>
-                                    <td class="center">5</td>
-                                    <td class="center">12.5</td>
+                                    <td>{{a.dateparis}}</td>
+                                    <td class="center">{{a.coteglobal}}</td>
+                                    <td class="center">{{a.mise}}</td>
+                                    <td class="center">{{a.gainpossible}}</td>
                                     <td>victoire</td>
+                                    <!-- statut eto a zao -->
                                 </tr>
-                                <tr>
-                                        <td>basket</td>
-                                        <td>Aber/ir</td>
-                                        <td class="center">2.5</td>
-                                        <td class="center">5</td>
-                                        <td class="center">12.5</td>
-                                        <td>defaite</td>
-                                    </tr>
                             </tbody>
                         </table>
                     </div>

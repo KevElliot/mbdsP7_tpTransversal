@@ -4,6 +4,7 @@ import { forkJoin, Observable, of } from 'rxjs';
 import { Match } from '../model/match.model';
 import { DetailsParis } from '../model/detailsParis.model';
 import { Paris } from '../model/paris.model';
+import { Historique } from '../model/historique.model';
 
 @Injectable({
     providedIn: 'root'
@@ -31,5 +32,11 @@ export class ApiService {
         headers.append('Content-Type', 'application/json');
         console.log("Pari placer");
         return this.http.post(this.uri + "/parisApi/paris",paris,{headers:headers});
+    }
+    historiqueMatch(idclient:any):Observable<Historique[]> {
+        const headers = new HttpHeaders();
+        headers.append('accept', 'application/json');
+        console.log("HistorriqueMatch en cours...")
+        return this.http.get<Historique[]>(this.uri + 'parisApi/listeParis?idclient='+idclient,{headers:headers});
     }
 }

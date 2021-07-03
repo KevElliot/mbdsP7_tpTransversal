@@ -67,7 +67,7 @@ app.route(prefix + '/user')
   .get(user.getUserActive);
 
 app.route(prefix + '/parier')
-  .put(user.updateJetonUser);
+  .get(user.updateJetonUser);
 
 app.route(prefix + '/user/:id')
   .get(user.getUserById)

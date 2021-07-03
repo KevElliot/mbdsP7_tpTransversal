@@ -91,20 +91,24 @@ function updateUser(req, res) {
   );
 }
 // Update jeton d'un user (PUT)
-function updateJetonUser(req, res) {
-  User.findByIdAndUpdate(
-    req.body._id,
-    req.body,
-    { new: true },
-    (err, user) => {
-      if (err) {
-        console.log(err);
-        res.send(err);
-      } else {
-        res.json({ message: "updated" });
-      }
-    }
-  );
+// function updateJetonUser(req, res) {
+//   User.findByIdAndUpdate(
+//     req.body._id,
+//     req.body,
+//     { new: true },
+//     (err, user) => {
+//       if (err) {
+//         console.log(err);
+//         res.send(err);
+//       } else {
+//         res.json({ message: "updated" });
+//       }
+//     }
+//   );
+// }
+function updateJetonUser(req, res){
+  console.log(req);
+  res.send(req);
 }
 // suppression d'un User (DELETE)
 function deleteUser(req, res) {

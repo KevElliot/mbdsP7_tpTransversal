@@ -47,6 +47,7 @@ app.route(prefix + '/auth/register')
   .post(user.register);
 
 app.route(prefix + '/jeton/demande')
+  .get(jetons.getDemandeJeton)
   .post(jetons.demandeJeton);
 
 app.route(prefix + '/jeton/statut')

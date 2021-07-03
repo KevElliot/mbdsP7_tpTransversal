@@ -6,6 +6,15 @@ router.use(bodyParser.json());
 var Jetons = require('../model/demandeJeton');
 var User = require('../model/user');
 
+function getDemandeJeton(req, res){
+    Jetons.find((err, jetons) => {
+        if(err){
+            res.send(err)
+        }
+        res.send(jetons);
+    });
+}
+
 function demandeJeton(req, res) {
     let jetons = new Jetons();
     jetons.iduser = req.body.iduser;
@@ -62,6 +71,7 @@ function updateStatutJeton(req, res) {
     );
 }
 module.exports = {
+    getDemandeJeton,
     demandeJeton,
     updateStatutJeton,
 };

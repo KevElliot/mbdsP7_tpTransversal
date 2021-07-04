@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { DetailParieComponent } from './parie/detail-parie/detail-parie.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DataTablesModule} from 'angular-datatables';
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -20,6 +21,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { HistoriqueParieComponent } from './parie/historique-parie/historique-parie.component';
 import { ProfilComponent } from './profil/profil.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const routes:Routes = [
   {
@@ -66,7 +68,9 @@ const routes:Routes = [
     MatInputModule,MatStepperModule,
     MatFormFieldModule,
     MatSlideToggleModule,
-    NgxQRCodeModule
+    DataTablesModule,
+    NgxQRCodeModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

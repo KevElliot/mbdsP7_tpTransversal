@@ -2,7 +2,7 @@
 <button type="button" class="btn btn-danger floatRight" (click)="toogle()">Afficher mes paris!</button>
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Parier en détails!</h1>
+        <h2 class="h3 mb-0 text-gray-800">Parier en détails</h2>
     </div>
     <div class="row">
         <div class="col-xl-8 col-lg-7">
@@ -74,7 +74,8 @@
             </div>
             <div class="footCardParier">
                 <label *ngIf="pariGrouper">Mise sur parie grouper: {{this.totalMise}}</label>
-                <button type="button" class="btn btn-danger btn-placer floatRight" (click)="placerParie()">Placer mes paris!</button>
+                <button type="button" class="btn btn-danger btn-placer floatRight" (click)="placerParie()" *ngIf="!placerCliquer">Placer mes paris!</button>
+                <button class="btn btn-danger btn-placer floatRight" *ngIf="placerCliquer"><mat-spinner [diameter]="30" style="margin:0 auto;" ></mat-spinner></button>
             </div>
         </div>
     </div>

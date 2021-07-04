@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
   nom; email; jeton;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  loginCliquer = false;
+  inscrCliquer = false;
 
   ngOnInit(): void {
     this.firstFormGroup = this.fb.group({
@@ -44,6 +46,7 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['/home']);
   }
   inscription() {
+      this.inscrCliquer = true;
       let user = new Login();
       user.name = this.nom;
       user.email = this.email;
@@ -60,6 +63,7 @@ export class LoginComponent implements OnInit {
         });
   }
   onSubmit() {
+    this.loginCliquer=true;
     if (this.signin.valid) {
       let nouvelAuthentification = new Login();
       let user = new Login();

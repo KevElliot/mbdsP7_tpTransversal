@@ -81,7 +81,7 @@
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Bienvenu, <b>{{this.name}}</b></span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Bienvenue, <b>{{this.name}}</b></span>
                     </a>
                 </li>
             </ul>
@@ -124,7 +124,8 @@
                         <input type="number" formControlName="jetonDemande" class="form-control" value="1">
                         <label>{{this.erreur}}</label>
                     </div>
-                    <button type="submit" class="btn btn-success floatRight">Valider</button>
+                    <button type="submit" class="btn btn-success floatRight" *ngIf="!demandeCliquer">Valider</button>
+                    <button class="btn btn-success floatRight" *ngIf="demandeCliquer"><mat-spinner [diameter]="30"></mat-spinner></button>
                 </form>
             </div>
             <div class="modal-footer">

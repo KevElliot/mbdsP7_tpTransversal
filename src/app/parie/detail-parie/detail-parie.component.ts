@@ -27,11 +27,13 @@ export class DetailParieComponent implements OnInit {
   matchParier: Match[];
   totalMise: number = 0;
   pariGrouper = false;
+  placerCliquer =false;
 
   constructor(private route: ActivatedRoute,
     private renderer: Renderer2,
     private apiService: ApiService,
     private fb: FormBuilder,
+    private router:Router,
   ) { }
 
   ngOnInit(): void {
@@ -90,6 +92,7 @@ export class DetailParieComponent implements OnInit {
     else { this.toogled = true }
   }
   placerParie() {
+    this.placerCliquer=true;
     if (this.pariGrouper) {
       this.paris = new Paris();
       if (this.data.length == 1) {
@@ -101,8 +104,9 @@ export class DetailParieComponent implements OnInit {
       console.log("donne pour pari----- " + JSON.stringify(this.paris));
       this.apiService.placerPari(this.paris).subscribe(
         reponse => {
-          console.log("nahazo valiny "+reponse);
-          //this.router.navigate(["/home"]);
+          //update jeton utilisateur tokony miena
+          //console.log("nahazo valiny "+reponse);
+          this.router.navigate(["/historique"]);
         }, error => {
           console.log("error "+error);
         });
@@ -116,8 +120,9 @@ export class DetailParieComponent implements OnInit {
         this.paris.mise = this.data[i].jeton;
         this.apiService.placerPari(this.paris).subscribe(
           reponse => {
-            console.log("nahazo valiny "+reponse);
-            //this.router.navigate(["/home"]);
+            //update jeton utilisateur tokony miena
+            //console.log("nahazo valiny "+reponse);
+            this.router.navigate(["/historique"]);
           }, error => {
             console.log("error "+error);
           });

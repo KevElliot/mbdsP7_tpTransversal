@@ -16,6 +16,7 @@ export class NavigationComponent implements OnInit {
   name = sessionStorage.getItem("nom");
   jetons = sessionStorage.getItem("jetons");
   erreur:string;
+  demandeCliquer=false;
   formDemandeJeton = new FormGroup({
     jetonDemande: new FormControl('', [Validators.required, Validators.min(10)]),
   });
@@ -32,6 +33,7 @@ export class NavigationComponent implements OnInit {
   onSubmit() {
     //demande de jeton ny ato
     if(this.formDemandeJeton.valid){
+      this.demandeCliquer=true;
       var demandeJeton = new DemandeJetons();
       demandeJeton.iduser=this.idUser;
       demandeJeton.jetonsdemande=this.formDemandeJeton.value.jetonDemande;

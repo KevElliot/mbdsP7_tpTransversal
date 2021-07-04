@@ -39,4 +39,10 @@ export class ApiService {
         console.log("HistorriqueMatch en cours...")
         return this.http.get<Historique[]>(this.uri + 'parisApi/listeParis?idclient='+idclient,{headers:headers});
     }
+    historiqueMatchById(idMatch:any):Observable<Paris> {
+        const headers = new HttpHeaders();
+        headers.append('accept', 'application/json');
+        console.log("detail Paris en cours...")
+        return this.http.get<Paris>(this.uri + '/parisApi/paris?id='+idMatch,{headers:headers});
+    }
 }

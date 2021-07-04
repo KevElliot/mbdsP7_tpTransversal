@@ -3,10 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatCard } from '@angular/material/card';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ApiService } from '../../shared/apiGrails.service';
+import { AuthService } from '../../shared/auth.service';
 import { Match } from '../../model/match.model';
 import { Paris } from '../../model/paris.model';
 import { DetailsParis } from '../../model/detailsParis.model';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { Login } from '../../model/login.model';
 
 @Component({
   selector: 'app-detail-parie',
@@ -18,6 +20,7 @@ export class DetailParieComponent implements OnInit {
   myFormGroup: FormGroup = this.fb.group({});
   idParie = 0;
   idUser = sessionStorage.getItem("userActive");
+  jetonUser = sessionStorage.getItem("jetons");
   data = [] //fitambarany données rehetra
   lastData = [] //données farany natsofoka
   toogled = false;
@@ -27,13 +30,14 @@ export class DetailParieComponent implements OnInit {
   matchParier: Match[];
   totalMise: number = 0;
   pariGrouper = false;
-  placerCliquer =false;
+  placerCliquer = false;
 
   constructor(private route: ActivatedRoute,
     private renderer: Renderer2,
     private apiService: ApiService,
+    private authService: AuthService,
     private fb: FormBuilder,
-    private router:Router,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -92,41 +96,46 @@ export class DetailParieComponent implements OnInit {
     else { this.toogled = true }
   }
   placerParie() {
-    this.placerCliquer=true;
-    if (this.pariGrouper) {
-      this.paris = new Paris();
-      if (this.data.length == 1) {
-        alert("Vous aviez qu'un seul pari, veuillez enlever le pari grouper ou ajouter d'autre pari.");
-      }
-      this.paris.idclient = this.idUser;
-      this.paris.detailsparis = this.detailsParis;
-      this.paris.mise = this.totalMise;
-      console.log("donne pour pari----- " + JSON.stringify(this.paris));
-      this.apiService.placerPari(this.paris).subscribe(
-        reponse => {
-          //update jeton utilisateur tokony miena
-          //console.log("nahazo valiny "+reponse);
-          this.router.navigate(["/historique"]);
-        }, error => {
-          console.log("error "+error);
-        });
-    } else {
-      var detail1:DetailsParis[]=[];
-      for (var i = 0; i < this.data.length; i++) {
+    console.log(this.totalMise);
+    console.log(this.jetonUser);
+    
+    if (this.totalMise<=+this.jetonUser) {
+      this.placerCliquer = true;
+      if (this.pariGrouper) {
         this.paris = new Paris();
+        if (this.data.length == 1) {
+          alert("Vous aviez qu'un seul pari, veuillez enlever le pari grouper ou ajouter d'autre pari.");
+        }
         this.paris.idclient = this.idUser;
-        detail1.push(this.detailsParis[i]);
-        this.paris.detailsparis = detail1;
-        this.paris.mise = this.data[i].jeton;
+        this.paris.detailsparis = this.detailsParis;
+        this.paris.mise = this.totalMise;
+        console.log("donne pour pari----- " + JSON.stringify(this.paris));
         this.apiService.placerPari(this.paris).subscribe(
           reponse => {
-            //update jeton utilisateur tokony miena
             //console.log("nahazo valiny "+reponse);
             this.router.navigate(["/historique"]);
           }, error => {
-            console.log("error "+error);
+            console.log("error " + error);
           });
+      } else {
+        var detail1: DetailsParis[] = [];
+        for (var i = 0; i < this.data.length; i++) {
+          this.paris = new Paris();
+          this.paris.idclient = this.idUser;
+          detail1.push(this.detailsParis[i]);
+          this.paris.detailsparis = detail1;
+          this.paris.mise = this.data[i].jeton;
+          this.apiService.placerPari(this.paris).subscribe(
+            reponse => {
+              //console.log("nahazo valiny "+reponse);
+              this.router.navigate(["/historique"]);
+            }, error => {
+              console.log("error " + error);
+            });
+        }
       }
+    }else{
+      alert("Votre jetons est inferieur à votre mise! faite une demande de jeton");
     }
   }
   onSubmit(id) {

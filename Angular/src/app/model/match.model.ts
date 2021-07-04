@@ -1,7 +1,7 @@
 import { Equipe } from './equipe.model';
 
 export class Match {
-    id:string;
+    id:number;
     cotev1:string;
     cotex:string;
     resultat:string;

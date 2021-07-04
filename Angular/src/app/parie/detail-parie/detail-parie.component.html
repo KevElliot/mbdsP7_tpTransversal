@@ -2,86 +2,35 @@
 <button type="button" class="btn btn-danger floatRight" (click)="toogle()">Afficher mes paris!</button>
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Parier en détails!</h1>
+        <h2 class="h3 mb-0 text-gray-800">Parier en détails</h2>
     </div>
     <div class="row">
         <div class="col-xl-8 col-lg-7">
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h3 class="m-0 font-weight-bold text-primary">Parie par victoire</h3>
+                <div class="row card-header py-3">
+                    <h3 class="m-0 font-weight-bold text-primary">Parie par victoire</h3>&nbsp; &nbsp;
+                    <mat-spinner [diameter]="30" *ngIf="!showData"></mat-spinner>
                 </div>
-                <div class="card-body">
+                <div class="card-body" *ngIf="showData">
                     <table class="tableClass center">
                         <tr>
-                            <th>Exterieur</th>
-                            <th>Nul</th>
-                            <th>Interieur</th>
+                            <th>Match</th>
+                            <th>Exterieur (V1)</th>
+                            <th>Nul (X)</th>
+                            <th>Interieur (V2)</th>
                         </tr>
-                        <tr>
+                        <tr *ngFor="let a of match;let i = index">
                             <td>
-                                <!-- visibilityPari id,cote avy any anaty base na webService -->
-                                <button type="button" class="btn btn-success" (click)="visibilityPari('1','2.1','parie par victoire')">1</button>
+                                {{a.equipe1.nom}}/{{a.equipe2.nom}}
                             </td>
                             <td>
-                                <button type="button" class="btn btn-secondary" (click)="visibilityPari('2','2.2','parie par victoire')">0</button>
+                                <button type="button" class="btn btn-success" (click)="visibilityPari('1'+i,i,a.equipe1.nom+'/'+a.equipe2.nom,a.cotev1,'V1')">{{a.cotev1}}</button>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-success" (click)="visibilityPari('3','2.3','parie par victoire')">2</button>
+                                <button type="button" class="btn btn-secondary" (click)="visibilityPari('2'+i,i,a.equipe1.nom+'/'+a.equipe2.nom,a.cotex,'X')">{{a.cotex}}</button>
                             </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h3 class="m-0 font-weight-bold text-primary">Parie par but</h3>
-                </div>
-                <div class="card-body">
-                    <table class="tableClass center">
-                        <tr>
-                            <th>Nombre de but</th>
-                            <th>Cote</th>
-                        </tr>
-                        <tr>
-                            <td>1-0</td>
                             <td>
-                                <button type="button" class="btn btn-success" (click)="visibilityPari('4','2.1','parie par but')">1</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1-0</td>
-                            <td>
-                                <button type="button" class="btn btn-success" (click)="visibilityPari('5','2.1','parie par but')">1</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1-0</td>
-                            <td>
-                                <button type="button" class="btn btn-success" (click)="visibilityPari('6','2.1','parie par but')">1</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1-0</td>
-                            <td>
-                                <button type="button" class="btn btn-success" (click)="visibilityPari('7','2.1','parie par but')">1</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1-0</td>
-                            <td>
-                                <button type="button" class="btn btn-success" (click)="visibilityPari('8','2.1','parie par but')">1</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1-0</td>
-                            <td>
-                                <button type="button" class="btn btn-success" (click)="visibilityPari('9','2.1','parie par but')">1</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1-0</td>
-                            <td>
-                                <button type="button" class="btn btn-success" (click)="visibilityPari('10','2.1','parie par but')">1</button>
+                                <button type="button" class="btn btn-success" (click)="visibilityPari('3'+i,i,a.equipe1.nom+'/'+a.equipe2.nom,a.cotev2,'V2')">{{a.cotev2}}</button>
                             </td>
                         </tr>
                     </table>
@@ -92,15 +41,16 @@
             <div class="cardContenu shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h3 class="m-0 font-weight-bold text-primary">Placer vos paris</h3>
+                    <div class="row"><mat-slide-toggle (change)="onChange()">Parie grouper</mat-slide-toggle></div>
                     <button mat-icon-button class="floatRight">
                         <mat-icon (click)="toogle()">close</mat-icon>
                     </button>
                 </div>
                 <div class="placeMatCardParie" *ngFor="let a of data">
                     <mat-card class="cardParier">
-                        <mat-card-title>Match Psg/Real {{a.id}}</mat-card-title>
+                        <mat-card-title>Match {{a.nom}}</mat-card-title>
                         <mat-card-content>
-                            <p>Type du parie: {{a.type}}</p>
+                            <p>Pronostique: {{a.prono}}</p>
                             <p>Cote: {{a.cote}}</p>
                             <form [formGroup]="myFormGroup" (ngSubmit)="onSubmit(a.id)">
                                 <label>Jetons à parier:</label>
@@ -124,7 +74,9 @@
                 </div>
             </div>
             <div class="footCardParier">
-                <button type="button" class="btn btn-danger btn-placer floatRight" (click)="placerParie()">Placer mes paris!</button>
+                <label *ngIf="pariGrouper">Mise sur parie grouper: {{this.totalMise}}</label>
+                <button type="button" class="btn btn-danger btn-placer floatRight" (click)="placerParie()" *ngIf="!placerCliquer">Placer mes paris!</button>
+                <button class="btn btn-danger btn-placer floatRight" *ngIf="placerCliquer"><mat-spinner [diameter]="30" style="margin:0 auto;" ></mat-spinner></button>
             </div>
         </div>
     </div>

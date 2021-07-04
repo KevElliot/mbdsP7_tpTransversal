@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
   nom; email; jeton;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  loginCliquer = false;
+  inscrCliquer = false;
 
   ngOnInit(): void {
     this.firstFormGroup = this.fb.group({
@@ -41,9 +43,10 @@ export class LoginComponent implements OnInit {
   }
   connexion() {
     sessionStorage.setItem('monObjet', 'maValeur');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
   inscription() {
+      this.inscrCliquer = true;
       let user = new Login();
       user.name = this.nom;
       user.email = this.email;
@@ -60,21 +63,21 @@ export class LoginComponent implements OnInit {
         });
   }
   onSubmit() {
+    this.loginCliquer=true;
     if (this.signin.valid) {
       let nouvelAuthentification = new Login();
       let user = new Login();
-      // nouvelAuthentification.email = this.signin.value.email;
-      // nouvelAuthentification.password = this.signin.value.password;
-      nouvelAuthentification.email = "tom@gmail.com";
-      nouvelAuthentification.password = "tom";
+      nouvelAuthentification.email = this.signin.value.email;
+      nouvelAuthentification.password = this.signin.value.password;
       this.authService.authentification(nouvelAuthentification)
         .subscribe(
           reponse => {
+            this.authService.setConnected(true);
             sessionStorage.setItem('userActive',reponse._id);
             sessionStorage.setItem('nom',reponse.name);
             sessionStorage.setItem('jetons',reponse.jetons);
             // this.router.navigate(["/home"],{queryParams:{data:reponse._id}});
-            this.router.navigate(["/home"]);
+            this.router.navigate(["/"]);
           }, error => {
             this.champs = "Username or password is incorrect";
           });

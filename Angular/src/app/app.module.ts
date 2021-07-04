@@ -9,38 +9,44 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { DetailParieComponent } from './parie/detail-parie/detail-parie.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DataTablesModule} from 'angular-datatables';
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 import { MatInputModule } from '@angular/material/input';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { HistoriqueParieComponent } from './parie/historique-parie/historique-parie.component';
 import { ProfilComponent } from './profil/profil.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AuthGuard } from './shared/auth.guard';
 
 const routes:Routes = [
   {
-    path:"",
-    component:LoginComponent
-  },
-  {
     // http://localhost:4200/home
-    path:"home",
+    path:"",
     component:ParieComponent
   },
   {
-    path:"parie/:id",
+    path:"login",
+    component:LoginComponent
+  },
+  {
+    path:"pari",
     component:DetailParieComponent
   },
   {
     path:"historique",
-    component:HistoriqueParieComponent
+    component:HistoriqueParieComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:"profil/:id",
-    component:ProfilComponent
+    component:ProfilComponent,
+    canActivate : [AuthGuard]
   }
 ]
 
@@ -64,7 +70,10 @@ const routes:Routes = [
     FormsModule, ReactiveFormsModule,
     MatInputModule,MatStepperModule,
     MatFormFieldModule,
-    NgxQRCodeModule
+    MatSlideToggleModule,
+    DataTablesModule,
+    NgxQRCodeModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

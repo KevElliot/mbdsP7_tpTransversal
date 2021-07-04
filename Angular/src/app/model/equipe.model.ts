@@ -1,5 +1,5 @@
 export class Equipe {
-    id:string;
+    id:number;
     note:string;
     nom:string;
   }

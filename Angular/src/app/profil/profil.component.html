@@ -4,14 +4,15 @@
     <div class="row">
         <div class="col-xl-12 col-lg-12">
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h3 class="m-0 font-weight-bold text-primary">Votre profil</h3>
+                <div class="row card-header py-3">
+                    <h3 class="m-0 font-weight-bold text-primary">Votre profil</h3>&nbsp; &nbsp;
+                    <mat-spinner [diameter]="30" *ngIf="!showData"></mat-spinner>
                 </div>
-                <div class="card-body">
+                <div class="card-body" *ngIf="showData">
                     <div class="row">
-                        <div class="col-xl-4 col-lg-4 center">
-                            <img class="saryProfil" src="assets/img/profil/profil.JPG" alt="photo de profil">
-                            <ngx-qrcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value" cssClass="bshadow"></ngx-qrcode>
+                        <div class="col-xl-4 col-lg-4">
+                            <h4 class="m-0 font-weight-bold">Qr code</h4><hr/>
+                            <ngx-qrcode class="center" [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value" cssClass="bshadow"></ngx-qrcode>
                         </div>
                         <div class="col-xl-8 col-lg-8">
                             <form [formGroup]="formUpdateUser" class="user" (ngSubmit)="onSubmit()">

@@ -7,6 +7,7 @@ mongoose.Promise = global.Promise;
 let port = process.env.PORT || 8010;
 let email = require('./routes/mail');
 let user = require('./routes/user');
+let jetons = require('./routes/jetons');
 
 
 //connexion mongoDB
@@ -45,8 +46,17 @@ app.route(prefix + '/mail')
 app.route(prefix + '/auth/register')
   .post(user.register);
 
+app.route(prefix + '/jeton/demande')
+  .post(jetons.demandeJeton);
+
+app.route(prefix + '/jeton/statut')
+  .put(jetons.updateStatutJeton);
+
 app.route(prefix + '/auth/login')
   .post(user.login);
+
+app.route(prefix + '/auth/loginQr')
+  .post(user.loginQr);
 
 app.route(prefix + '/auth/logout')
   .post(user.logout);

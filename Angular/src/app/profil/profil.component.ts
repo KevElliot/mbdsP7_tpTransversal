@@ -20,6 +20,7 @@ export class ProfilComponent implements OnInit {
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
   });
+  showData=false;
 
   constructor(
     private authService: AuthService,
@@ -54,6 +55,7 @@ export class ProfilComponent implements OnInit {
     this.authService.getUser(id).subscribe((user) => {
       this.userInfo = user;
       this.value = user.email + ";" + user.password;
+      this.showData =true;
       // console.log("value: " + this.value)
       // console.log(this.userInfo)
     });

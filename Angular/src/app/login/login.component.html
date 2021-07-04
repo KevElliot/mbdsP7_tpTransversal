@@ -53,7 +53,8 @@
                                             <p> Email: {{email}}</p>
                                             <p> Jeton demandés: {{jeton}}</p>
                                             <div class="text-center padRegister">
-                                                <button (click)="inscription()" class="validerRegister btn btn-primary">Valider</button>
+                                                <button (click)="inscription()" class="validerRegister btn btn-primary" *ngIf="!inscrCliquer">Valider</button>
+                                                <button class="validerRegister btn btn-primary center" *ngIf="inscrCliquer"><mat-spinner [diameter]="30" style="margin:0 auto;"></mat-spinner></button>
                                             </div>
                                             <div>
                                                 <button class="floatLeft" mat-button matStepperPrevious>Précedent</button>
@@ -80,7 +81,8 @@
                                     <div class="form-group">
                                         <input type="password" formControlName="password" required class="form-control form-control-user" id="password" placeholder="Password">
                                     </div>
-                                    <input type="submit" name="Login" class="btn btn-primary btn-user btn-block" value="Login">
+                                    <input type="submit" name="Login" class="btn btn-primary btn-user btn-block" value="Login" *ngIf="!loginCliquer">
+                                    <button class="validerRegister btn btn-primary "*ngIf="loginCliquer"><mat-spinner [diameter]="30" style="margin:0 auto;" ></mat-spinner></button>
                                     <hr>
                                 </form>
                                 <hr>

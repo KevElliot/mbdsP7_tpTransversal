@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
   }
   connexion() {
     sessionStorage.setItem('monObjet', 'maValeur');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
   inscription() {
       this.inscrCliquer = true;
@@ -72,11 +72,12 @@ export class LoginComponent implements OnInit {
       this.authService.authentification(nouvelAuthentification)
         .subscribe(
           reponse => {
+            this.authService.setConnected(true);
             sessionStorage.setItem('userActive',reponse._id);
             sessionStorage.setItem('nom',reponse.name);
             sessionStorage.setItem('jetons',reponse.jetons);
             // this.router.navigate(["/home"],{queryParams:{data:reponse._id}});
-            this.router.navigate(["/home"]);
+            this.router.navigate(["/"]);
           }, error => {
             this.champs = "Username or password is incorrect";
           });

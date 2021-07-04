@@ -20,15 +20,22 @@ export class NavigationComponent implements OnInit {
   formDemandeJeton = new FormGroup({
     jetonDemande: new FormControl('', [Validators.required, Validators.min(10)]),
   });
+  isConnect:boolean;
 
   constructor(private router: Router, private authService: AuthService) { }
   
 
   ngOnInit(): void {
+    if(this.idUser){
+      this.authService.setConnected(true);
+    }
+    this.isConnect = this.authService.getIsConnected();
   }
   deconnecter() {
     sessionStorage.clear();
+    this.authService.setConnected(false);
     this.router.navigate(['/']);
+    window.location.reload();
   }
   onSubmit() {
     //demande de jeton ny ato

@@ -10,22 +10,22 @@
     </span>
     <hr class="sidebar-divider my-0">
     <li class="nav-item">
-        <a class="nav-link" href="/home">
+        <a class="nav-link" href="/">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Home</span>
         </a>
     </li>
 
-    <hr class="sidebar-divider">
-    <li class="nav-item">
+    <hr class="sidebar-divider" *ngIf="isConnect">
+    <li class="nav-item" *ngIf="isConnect">
         <a routerLink="/profil/{{this.idUser}}" class="nav-link">
             <i class="fas fa-fw fa-user"></i>
             <span>Profil</span>
         </a>
     </li>
-    
-    <hr class="sidebar-divider">
-    <li class="nav-item">
+
+    <hr class="sidebar-divider" *ngIf="isConnect">
+    <li class="nav-item" *ngIf="isConnect">
         <a class="nav-link" data-toggle="modal" data-target=".demandeJeton">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Demande de jeton</span>
@@ -48,10 +48,17 @@
     </li>
 
     <hr class="sidebar-divider">
-    <li class="nav-item">
+    <li class="nav-item" *ngIf="isConnect">
         <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
             <i class="fas fa-fw fa-sign-out-alt"></i>
             <span>Deconnecter</span>
+        </a>
+    </li>
+
+    <li class="nav-item" *ngIf="!isConnect">
+        <a class="nav-link" href="/login">
+            <i class="fas fa-fw fa-sign-in-alt"></i>
+            <span>Login</span>
         </a>
     </li>
 
@@ -70,18 +77,22 @@
             <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" onClick="toogledSide()">
                 <i class="fa fa-bars"></i>
             </button>
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto" *ngIf="isConnect">
                 <li class="nav-item dropdown no-arrow">
                     <span class="nav-link">
                         <span class="text-gray-600 small">
-                            <i class="fas fa-balance-scale fa-sm"> &nbsp; Jetons: </i><b>{{this.jetons}}</b></span>
+                            <i class="fas fa-balance-scale fa-sm"> &nbsp; Jetons: </i>
+                            <b>{{this.jetons}}</b>
+                        </span>
                     </span>
                 </li>
                 <div class="topbar-divider d-none d-sm-block"></div>
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Bienvenue, <b>{{this.name}}</b></span>
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Bienvenue,
+                            <b>{{this.name}}</b>
+                        </span>
                     </a>
                 </li>
             </ul>
@@ -125,7 +136,9 @@
                         <label>{{this.erreur}}</label>
                     </div>
                     <button type="submit" class="btn btn-success floatRight" *ngIf="!demandeCliquer">Valider</button>
-                    <button class="btn btn-success floatRight" *ngIf="demandeCliquer"><mat-spinner [diameter]="30"></mat-spinner></button>
+                    <button class="btn btn-success floatRight" *ngIf="demandeCliquer">
+                        <mat-spinner [diameter]="30"></mat-spinner>
+                    </button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -134,4 +147,3 @@
         </div>
     </div>
 </div>
- 

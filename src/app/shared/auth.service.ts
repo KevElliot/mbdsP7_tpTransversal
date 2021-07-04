@@ -7,7 +7,7 @@ import { Login } from '../model/login.model';
     providedIn: 'root'
 })
 export class AuthService {
-
+    isConnect = false;
     constructor(private http: HttpClient) { }
 
     // uri = "http://localhost:8010/pariBack";
@@ -29,5 +29,16 @@ export class AuthService {
     }
     demandeJeton(jeton: any): Observable<any> {
         return this.http.post(this.uri + '/jeton/demande', jeton);
+    }
+    isConnected() {
+        return new Promise((resolve, reject) => {
+            resolve(this.isConnect);
+        });
+    }
+    setConnected(bool:boolean){
+        this.isConnect=bool;
+    }
+    getIsConnected(){
+        return this.isConnect;
     }
 }

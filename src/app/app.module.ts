@@ -22,16 +22,17 @@ import { HistoriqueParieComponent } from './parie/historique-parie/historique-pa
 import { ProfilComponent } from './profil/profil.component';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AuthGuard } from './shared/auth.guard';
 
 const routes:Routes = [
   {
+    // http://localhost:4200/home
     path:"",
-    component:LoginComponent
+    component:ParieComponent
   },
   {
-    // http://localhost:4200/home
-    path:"home",
-    component:ParieComponent
+    path:"login",
+    component:LoginComponent
   },
   {
     path:"pari",
@@ -39,11 +40,13 @@ const routes:Routes = [
   },
   {
     path:"historique",
-    component:HistoriqueParieComponent
+    component:HistoriqueParieComponent,
+    canActivate : [AuthGuard]
   },
   {
     path:"profil/:id",
-    component:ProfilComponent
+    component:ProfilComponent,
+    canActivate : [AuthGuard]
   }
 ]
 

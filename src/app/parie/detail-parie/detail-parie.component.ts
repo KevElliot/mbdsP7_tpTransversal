@@ -29,8 +29,10 @@ export class DetailParieComponent implements OnInit {
   detailsParis: DetailsParis[] = [];
   matchParier: Match[];
   totalMise: number = 0;
+  showData = false;
   pariGrouper = false;
   placerCliquer = false;
+  isConnect: boolean;
 
   constructor(private route: ActivatedRoute,
     private renderer: Renderer2,
@@ -41,16 +43,24 @@ export class DetailParieComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if(this.idUser){
+      this.authService.setConnected(true);
+    }
+    this.isConnect = this.authService.getIsConnected();
     const id: number = +this.route.snapshot.params.id;
     this.idParie = id;
-
     this.getAllMatch();
   }
+
   getAllMatch() {
     this.apiService.listeMatch().subscribe((match) => {
       this.match = match;
+      this.showData = true;
+    }, error => {
+      window.location.reload();
     });
   }
+
   visibilityPari(id, idMatch, nom, cote, prono) {
     this.lastData = [{ "id": id, "nom": nom, "cote": cote, "prono": prono, "jeton": 1, "gain": cote }];
     var e = this.lastData[0].id;
@@ -96,35 +106,20 @@ export class DetailParieComponent implements OnInit {
     else { this.toogled = true }
   }
   placerParie() {
-    console.log(this.totalMise);
-    console.log(this.jetonUser);
-    
-    if (this.totalMise<=+this.jetonUser) {
-      this.placerCliquer = true;
-      if (this.pariGrouper) {
-        this.paris = new Paris();
-        if (this.data.length == 1) {
-          alert("Vous aviez qu'un seul pari, veuillez enlever le pari grouper ou ajouter d'autre pari.");
-        }
-        this.paris.idclient = this.idUser;
-        this.paris.detailsparis = this.detailsParis;
-        this.paris.mise = this.totalMise;
-        console.log("donne pour pari----- " + JSON.stringify(this.paris));
-        this.apiService.placerPari(this.paris).subscribe(
-          reponse => {
-            //console.log("nahazo valiny "+reponse);
-            this.router.navigate(["/historique"]);
-          }, error => {
-            console.log("error " + error);
-          });
-      } else {
-        var detail1: DetailsParis[] = [];
-        for (var i = 0; i < this.data.length; i++) {
+    if (this.isConnect) {
+      console.log(this.totalMise);
+      console.log(this.jetonUser);
+      if (this.totalMise <= +this.jetonUser) {
+        this.placerCliquer = true;
+        if (this.pariGrouper) {
           this.paris = new Paris();
+          if (this.data.length == 1) {
+            alert("Vous aviez qu'un seul pari, veuillez enlever le pari grouper ou ajouter d'autre pari.");
+          }
           this.paris.idclient = this.idUser;
-          detail1.push(this.detailsParis[i]);
-          this.paris.detailsparis = detail1;
-          this.paris.mise = this.data[i].jeton;
+          this.paris.detailsparis = this.detailsParis;
+          this.paris.mise = this.totalMise;
+          console.log("donne pour pari----- " + JSON.stringify(this.paris));
           this.apiService.placerPari(this.paris).subscribe(
             reponse => {
               //console.log("nahazo valiny "+reponse);
@@ -132,10 +127,28 @@ export class DetailParieComponent implements OnInit {
             }, error => {
               console.log("error " + error);
             });
+        } else {
+          var detail1: DetailsParis[] = [];
+          for (var i = 0; i < this.data.length; i++) {
+            this.paris = new Paris();
+            this.paris.idclient = this.idUser;
+            detail1.push(this.detailsParis[i]);
+            this.paris.detailsparis = detail1;
+            this.paris.mise = this.data[i].jeton;
+            this.apiService.placerPari(this.paris).subscribe(
+              reponse => {
+                //console.log("nahazo valiny "+reponse);
+                this.router.navigate(["/historique"]);
+              }, error => {
+                console.log("error " + error);
+              });
+          }
         }
+      } else {
+        alert("Votre jetons est inferieur à votre mise! faite une demande de jeton");
       }
-    }else{
-      alert("Votre jetons est inferieur à votre mise! faite une demande de jeton");
+    } else{
+      this.router.navigate(["/login"]);
     }
   }
   onSubmit(id) {

@@ -10,6 +10,8 @@ class Match {
     Date datematch
     String lieumatch
     Integer fini
+    Integer but1
+    Integer but2
     static constraints = {
         equipe1  nullable: true, blank: true
         equipe2  nullable: true, blank: true
@@ -19,6 +21,8 @@ class Match {
         resultat  nullable: true, blank: true
         datematch nullable: true, blank: true
         lieumatch nullable: true, blank: true
+        but1 nullable: true, blank: true
+        but2 nullable: true, blank: true
     }
     static mapping = {
         id generator: 'sequence', params:[sequence:'MATCH_SEQ']

@@ -9,7 +9,7 @@ class ParisApiService {
     def placeParis(Paris paris) {
         if(paris.detailsparis.size()>0){
             paris.dateparis = new Date()
-            paris.gain = 'OK'
+            paris.gain = null
             paris.nbmatch=paris.detailsparis.size()
             paris.nbgain=0
             paris.nbperdu=0
@@ -17,6 +17,7 @@ class ParisApiService {
             paris.detailsparis.each {
                 detailsparis ->
                     def match = Match.get(detailsparis.match.id)
+                    detailsparis.gain=null
                     switch (detailsparis.prono){
                         case "V1" :
                             detailsparis.cote=match.cotev1

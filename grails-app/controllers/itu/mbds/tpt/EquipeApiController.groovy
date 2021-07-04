@@ -27,13 +27,12 @@ class EquipeApiController {
                 serializeData(equipeInstance, request.getHeader("Accept"))
                 break
             case "PUT":
-                if (!params.id)
+                def equipeAsJson = request.getJSON()
+                if (!equipeAsJson.id)
                     return response.status = HttpServletResponse.SC_BAD_REQUEST
-                def equipeInstance = Equipe.get(params.id)
-                println equipeInstance.nom
+                def equipeInstance = Equipe.get(equipeAsJson.id)
                 if (!equipeInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
-                def equipeAsJson = request.getJSON()
                 equipeInstance.nom = equipeAsJson.nom
                 equipeInstance.note = equipeAsJson.note
                 println equipeInstance.nom
@@ -67,20 +66,23 @@ class EquipeApiController {
             case "DELETE":
                 if (!params.id)
                     return response.status = HttpServletResponse.SC_BAD_REQUEST
+                println "DELETE"
                 def equipeInstance = Equipe.get(params.id)
+                println equipeInstance.nom
                 if (!equipeInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
-                response.withFormat {
-                    json { render equipeInstance as JSON }
-                }
-                equipeService.delete(params.id)
+                println "Avant delete"
+                equipeInstance.delete()
+                println "Après delete"
                 return response.status = HttpServletResponse.SC_OK
                 break
             case "POST":
                 def equipeAsJson = request.getJSON()
+                println equipeAsJson.note
                 def equipeInstance = new Equipe()
                 equipeInstance.nom=equipeAsJson.nom
-                equipeInstance.note=equipeAsJson.note
+                equipeInstance.note=0
+                println equipeInstance.note
                 equipeApiService.save(equipeInstance)
                 return response.status = HttpServletResponse.SC_OK
                 break
@@ -101,7 +103,7 @@ class EquipeApiController {
                 equipeApiService.saveAll(equipeAsJson)
                 break
             case "GET":
-                def equipesInstance = Equipe.getAll()
+                def equipesInstance = Equipe.listOrderByNote(order:"desc")
                 if (!equipesInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {

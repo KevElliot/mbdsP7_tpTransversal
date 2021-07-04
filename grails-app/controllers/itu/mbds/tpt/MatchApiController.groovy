@@ -33,20 +33,37 @@ class MatchApiController {
                 serializeData(matchInstance, request.getHeader("Accept"))
                 break
             case "PUT":
-                if (!params.id)
-                    return response.status = HttpServletResponse.SC_BAD_REQUEST
-                def matchInstance = Match.get(params.id)
+               // if (!params.id)
+                    //return response.status = HttpServletResponse.SC_BAD_REQUEST
+                //def matchInstance = Match.get(params.id)
+                println request.getJSON()
                 def matchAsJson = request.getJSON()
-                matchInstance.equipe1 = matchAsJson.equipe1
-                matchInstance.equipe2 = matchAsJson.equipe2
-                matchInstance.datematch = matchAsJson.datematch
-                matchInstance.cotev1 = matchAsJson.cotev1
-                matchInstance.cotev2 = matchAsJson.cotev2
-                matchInstance.cotex = matchAsJson.cotex
-                matchInstance.resultat = matchAsJson.resultat
-                matchApiService.save(matchInstance)
-                if (!matchInstance)
+                def match = request.getJSON() as Match
+                println matchAsJson.id
+                if(!matchAsJson.id){
+                    println "BAD REQUEST"
+                    return response.status = HttpServletResponse.SC_BAD_REQUEST
+                }
+                println matchAsJson.cotev1
+                def matchInstance = Match.get(matchAsJson.id)
+                println matchAsJson.cotex
+                if (!matchInstance){
                     return response.status = HttpServletResponse.SC_NOT_FOUND
+                }
+                println matchAsJson.cotev2
+                Equipe equipe1 = Equipe.get(matchAsJson.equipe1.id)
+                Equipe equipe2 = Equipe.get(matchAsJson.equipe2.id)
+                matchInstance.equipe1=equipe1
+                matchInstance.equipe2=equipe2
+                matchInstance.cotev1=matchAsJson.cotev1
+                matchInstance.cotex=matchAsJson.cotex
+                matchInstance.cotev2=matchAsJson.cotev2
+                matchInstance.datematch=match.datematch
+                matchInstance.lieumatch=matchAsJson.lieumatch
+                println matchAsJson.cotev1
+                matchApiService.save(matchInstance)
+                println matchAsJson.cotex
+
                 response.withFormat {
                     json { render matchInstance as JSON }
                 }
@@ -72,7 +89,7 @@ class MatchApiController {
                 if (matchAsJson.cotex != null) {
                     matchInstance.cotex = tryParseToFloat(matchAsJson.cotex.toString())
                 }
-                matchService.save(matchInstance)
+                matchApiService.save(matchInstance)
                 if (!matchInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
@@ -86,14 +103,15 @@ class MatchApiController {
                 def matchInstance = Match.get(params.id)
                 if (!matchInstance)
                     return response.status = HttpServletResponse.SC_NOT_FOUND
-                response.withFormat {
-                    json { render matchInstance as JSON }
-                }
-                matchService.delete(params.id)
+                matchInstance.delete()
                 return response.status = HttpServletResponse.SC_OK
                 break
             case "POST":
-
+                def matchAsJson = request.getJSON()
+                def matchInstance = matchAsJson as Match
+                matchApiService.save(matchInstance)
+                return response.status = HttpServletResponse.SC_OK
+                break
             default:
                 return response.status = HttpServletResponse.SC_METHOD_NOT_ALLOWED
                 break
@@ -142,6 +160,33 @@ class MatchApiController {
             default:
                 return response.status = HttpServletResponse.SC_METHOD_NOT_ALLOWED
                 break
+        }
+    }
+    def count() {
+        def matchsInstance = Match.count()
+                response.withFormat {
+                    json { render matchsInstance as JSON }
+                }
+        serializeData(matchsInstance, request.getHeader("Accept"))
+    }
+    def resultat(){
+        if(request.getMethod()=="PUT"){
+            def matchAsJson = request.getJSON()
+            def match = new Match()
+
+            println matchAsJson
+            if(!matchAsJson.id){
+                println "BAD REQUEST"
+                return response.status = HttpServletResponse.SC_BAD_REQUEST
+            }
+            match.id=matchAsJson.id
+            match.but1=matchAsJson.but1
+            match.but2=matchAsJson.bu2
+            def matchResult=matchApiService.resultat(match)
+            if(matchResult){
+                return response.status = HttpServletResponse.SC_OK
+            }
+
         }
     }
     def serializeData(object, format) {

@@ -20,6 +20,9 @@ class ParisApiController {
                 if (!params.id)
                     return response.status = HttpServletResponse.SC_BAD_REQUEST
                 def parisInstance = Paris.get(params.id)
+                response.withFormat {
+                    json { render parisInstance as JSON }
+                }
                 serializeData(parisInstance, request.getHeader("Accept"))
                 break
                 break
@@ -52,7 +55,6 @@ class ParisApiController {
 
                 def parisInstance = Paris.getAll()
                 if (!parisInstance)
-                    println "Nothing"
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 response.withFormat {
                     json { render parisInstance as JSON }

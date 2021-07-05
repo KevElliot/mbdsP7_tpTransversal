@@ -12,6 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PariSport">
+        <activity android:name=".Activity.RegisterActivity"></activity>
+        <activity android:name=".Activity.HistoActivity" />
         <activity android:name=".Activity.MatchActivity" />
         <activity android:name=".Activity.QrActivity" />
         <activity android:name=".Activity.SignUpActivity" />

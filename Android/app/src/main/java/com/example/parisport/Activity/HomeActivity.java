@@ -1,6 +1,7 @@
 package com.example.parisport.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.ActionMenuItemView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -11,9 +12,13 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.service.autofill.FieldClassification;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
 
@@ -43,9 +48,6 @@ import static android.content.ContentValues.TAG;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +55,6 @@ public class HomeActivity extends AppCompatActivity {
         // initialisation network
 
         AndroidNetworking.initialize(getApplicationContext());
-
-
 
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
 
@@ -84,16 +84,34 @@ public class HomeActivity extends AppCompatActivity {
 
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
-        tabLayout = findViewById(R.id.tabLayout);
-        viewPager = findViewById(R.id.viewPager);
-
-        tabLayout.setupWithViewPager(viewPager);
-
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
-
-        viewPagerAdapter.addFragment(new HistoAllFragment(), "Tous");
-        viewPagerAdapter.addFragment(new HistoInProgressFragment(), "Encours");
-        viewPagerAdapter.addFragment(new HistoWinFragment(), "Gagnes");
-        viewPager.setAdapter(viewPagerAdapter);
+        // navigationView.findViewById(R.id.historiqueFragment);
+        /*
+        *         */
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_top_nav, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem){
+        switch (menuItem.getItemId()) {
+            case R.id.action_historique:
+                Log.e("TONGA avant intent", "error"+R.id.action_historique);
+                Intent intent = new Intent(this, HistoActivity.class);
+                Log.v("TONGA apres intent", "OK");
+                this.startActivity(intent);
+                Log.v("TONGA activity intent", "OK");
+                return true;
+            case R.id.action_bet:
+                return true;
+            default:
+                return super.onOptionsItemSelected(menuItem);
+        }
+
+    }
+
 }

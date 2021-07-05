@@ -5,9 +5,13 @@ import android.util.Log;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.ParsedRequestListener;
 import com.example.parisport.Modele.Equipe;
 import com.example.parisport.Modele.MatchFoot;
+import com.example.parisport.Modele.User;
+
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -19,6 +23,11 @@ public class Service {
     public static String urlPlacerParisAPI = "https://tpt-server-grails.herokuapp.com/parisApi/paris";
     public static String urlListesParisParClientAPI = "https://tpt-server-grails.herokuapp.com/parisApi/listeParis?idclient=abcd";
     public static String urlListesEquipesAPI = "https://tpt-server-grails.herokuapp.com/equipeApi/equipes";
+
+    public static String urlLoginQR = "https://parilocalnode.herokuapp.com/pariBack/auth/loginQr";
+    public static String urlLogin = "https://parilocalnode.herokuapp.com/pariBack/auth/login";
+    public static String urlregister = "https://parilocalnode.herokuapp.com/pariBack/auth/register";
+
 
     public static void getAllMatchFoot(){
 
@@ -44,6 +53,35 @@ public class Service {
                         // handle error
                     }
                 });
+    }
+
+    // login QR
+    public static void loginQR(){
+        
+    }
+
+    // login
+    public static void login(){
+        AndroidNetworking.post(urlLogin)
+                .setPriority(Priority.LOW)
+                .build()
+                .getAsObject(User.class, new ParsedRequestListener<User>() {
+                    @Override
+                    public void onResponse(User user) {
+                        // do anything with response
+
+                    }
+                    @Override
+                    public void onError(ANError anError) {
+                        // handle error
+                    }
+                });
+
+    }
+
+    // logout
+    public static void logout(){
+
     }
 
 }

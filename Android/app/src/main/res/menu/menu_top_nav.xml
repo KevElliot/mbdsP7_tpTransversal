@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/historiqueFragment"
+        android:id="@+id/action_historique"
         android:icon="@drawable/ic_history"
-        android:title="Historique" />
+        android:title="Historique"
+        app:showAsAction="never"/>
     <item
-        android:id="@+id/betFragment"
+        android:id="@+id/action_bet"
         android:icon="@drawable/ic_bet"
-        android:title="Bet" />
+        android:title="Bet"
+        app:showAsAction="never"/>
 </menu>

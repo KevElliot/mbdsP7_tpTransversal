@@ -73,6 +73,9 @@ app.route(prefix + '/user/:id')
   .get(user.getUserById)
   .delete(user.deleteUser);
 
+app.route(prefix + '/user/gain')
+    .put(user.updateMultiple);
+
 
 // On démarre le serveur
 app.listen(port, "0.0.0.0");

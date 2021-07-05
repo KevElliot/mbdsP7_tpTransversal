@@ -145,6 +145,25 @@ function getUserActive(req, res) {
     res.status(200).send({ user: user})
   });
 }
+
+function updateMultiple(req, res){
+  var infoUser;
+  for(var key in req.body) {
+    var jsn=JSON.parse(JSON.stringify(req.body));
+    if(jsn.hasOwnProperty(key)){
+      User.findOne({ _id: jsn[key]._id }, (err, user) => {
+        if (err) {
+          res.send(err);
+        }
+        infoUser = user;
+      infoUser.jetons=infoUser.jetons+jsn[key].jetons
+      infoUser.save();
+    });
+    }
+  }
+  res.json({ message: "update done" });
+}
+
 module.exports = {
   login,
   loginQr,
@@ -154,5 +173,6 @@ module.exports = {
   updateJetonUser,
   deleteUser,
   getUserById,
-  getUserActive
+  getUserActive,
+  updateMultiple
 };

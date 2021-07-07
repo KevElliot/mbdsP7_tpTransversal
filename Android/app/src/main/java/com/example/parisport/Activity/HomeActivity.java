@@ -13,6 +13,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.service.autofill.FieldClassification;
 import android.util.Log;
@@ -36,6 +37,7 @@ import com.example.parisport.Fragments.HistoWinFragment;
 import com.example.parisport.Modele.Equipe;
 import com.example.parisport.Modele.MatchFoot;
 import com.example.parisport.R;
+import com.example.parisport.Service.Service;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
@@ -47,6 +49,10 @@ import java.util.List;
 import static android.content.ContentValues.TAG;
 
 public class HomeActivity extends AppCompatActivity {
+
+    private boolean isChecked = false;
+    SharedPreferences sharedPreferences;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +96,28 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem checkable = menu.findItem(R.id.checkable_menu);
+        checkable.setChecked(isChecked);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.checkable_menu:
+                isChecked = !item.isChecked();
+                item.setChecked(isChecked);
+                Service.logout(sharedPreferences);
+                return true;
+            default:
+                return false;
+        }
+    }
+
+
+    /*
+    @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_top_nav, menu);
@@ -113,5 +141,6 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     }
+     */
 
 }

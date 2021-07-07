@@ -1,7 +1,7 @@
 package com.example.parisport.Modele;
 
 public class User {
-    private String id;
+    private String _id;
     private String name;
     private String email;
     private String password;
@@ -10,7 +10,7 @@ public class User {
     private String image;
 
     public User(String id, String name, String email, String password, String role, int jetons, String image) {
-        this.id = id;
+        this._id = id;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -19,15 +19,20 @@ public class User {
         this.image = image;
     }
 
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     public User() {
     }
 
     public String getId() {
-        return id;
+        return _id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this._id = id;
     }
 
     public String getName() {

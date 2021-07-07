@@ -1,15 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.DetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/detailsLieuMatch"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="detailsLieuMatch"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.262" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/detailsEquipe1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="detailsEquipe1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsLieuMatch"
+        app:layout_constraintVertical_bias="0.094" />
+
+
+    <TextView
+        android:id="@+id/detailsEquipe2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="detailsEquipe2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsEquipe1"
+        app:layout_constraintVertical_bias="0.125" />
+
+    <TextView
+        android:id="@+id/detailsDateMatch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="detailsDateMatch"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsEquipe2"
+        app:layout_constraintVertical_bias="0.112" />
+
+    <TextView
+        android:id="@+id/detailsCotev1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="detailsCotev1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsDateMatch"
+        app:layout_constraintVertical_bias="0.16" />
+
+    <TextView
+        android:id="@+id/detailsCotev2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="detailsCotev2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsDateMatch"
+        app:layout_constraintVertical_bias="0.16" />
+
+    <TextView
+        android:id="@+id/detailsCotex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="detailsCotex"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.825"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsDateMatch"
+        app:layout_constraintVertical_bias="0.16" />
+
+    <TextView
+        android:id="@+id/detailsResultat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="detailsResultat"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.727" />
+    <!--  -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

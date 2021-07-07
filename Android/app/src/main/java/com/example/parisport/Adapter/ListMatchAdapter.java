@@ -56,12 +56,12 @@ public class ListMatchAdapter extends ArrayAdapter<MatchFoot> {
         time.setText(user.lastMsgTime);
          */
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         stadeDomicile.setText(matchFoot.getLieuMatch());
         equipe1.setText(matchFoot.getEquipe1().getNom());
         equipe2.setText(matchFoot.getEquipe2().getNom());
-        dateMatch.setText(sdf.format(matchFoot.getDateMatch()));
+        // controller getter date "NULL"
+        // dateMatch.setText((CharSequence) matchFoot.getDateMatch());
         cotev1.setText(String.valueOf(matchFoot.getCotev1()));
         cotev2.setText(String.valueOf(matchFoot.getCotev2()));
         cotex.setText(String.valueOf(matchFoot.getCotex()));

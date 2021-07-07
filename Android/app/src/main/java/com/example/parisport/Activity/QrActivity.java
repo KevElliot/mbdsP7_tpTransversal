@@ -62,7 +62,7 @@ public class QrActivity extends AppCompatActivity {
                             // get text to USE
                             Toast.makeText(QrActivity.this, result.getText(), Toast.LENGTH_LONG).show();
                             // Use service
-                            Service.login();
+
 
                         }
                     });

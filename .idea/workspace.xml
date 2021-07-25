@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="ba964384-9bba-415a-8ffa-c97174eb1d68" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/demandeJeton.js" beforeDir="false" afterPath="$PROJECT_DIR$/model/demandeJeton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/jetons.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/jetons.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/server.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +110,14 @@
       <option name="presentableId" value="Default" />
       <updated>1541964455469</updated>
       <workItem from="1541964456895" duration="1206000" />
-      <workItem from="1625511067783" duration="224000" />
+      <workItem from="1625511067783" duration="383000" />
+      <workItem from="1626633882008" duration="612000" />
+      <workItem from="1626718205531" duration="1440000" />
+      <workItem from="1626759836508" duration="3517000" />
+      <workItem from="1626885269453" duration="1048000" />
+      <workItem from="1626966848584" duration="2013000" />
+      <workItem from="1626979749612" duration="746000" />
+      <workItem from="1627116200503" duration="6933000" />
     </task>
     <servers />
   </component>
@@ -121,7 +129,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

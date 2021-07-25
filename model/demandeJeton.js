@@ -4,6 +4,7 @@ let Schema = mongoose.Schema;
 
 var DemandeJetonSchema = Schema({  
   iduser: String,
+  emailuser: String,
   jetonsdemande: Number,
   statut: String
 });

@@ -151,12 +151,12 @@ function updateMultiple(req, res){
   for(var key in req.body) {
     var jsn=JSON.parse(JSON.stringify(req.body));
     if(jsn.hasOwnProperty(key)){
-      User.findOne({ _id: jsn[key]._id }, (err, user) => {
+      User.findOne({ _id: jsn[key]._idclient }, (err, user) => {
         if (err) {
           res.send(err);
         }
         infoUser = user;
-      infoUser.jetons=infoUser.jetons+jsn[key].jetons
+      infoUser.jetons=infoUser.jetons+jsn[key].capital
       infoUser.save();
     });
     }

@@ -7,7 +7,7 @@ var Jetons = require('../model/demandeJeton');
 var User = require('../model/user');
 
 function getDemandeJeton(req, res){
-    Jetons.find((err, jetons) => {
+    Jetons.find({statut: false},(err, jetons) => {
         if(err){
             res.send(err)
         }
@@ -18,14 +18,24 @@ function getDemandeJeton(req, res){
 function demandeJeton(req, res) {
     let jetons = new Jetons();
     jetons.iduser = req.body.iduser;
-    jetons.jetonsdemande = req.body.jetonsdemande;
-    jetons.statut = req.body.statut;
-    console.log(jetons);
-    jetons.save((err) => {
+
+    User.findOne({ _id: jetons.iduser }, (err, user) => {
         if (err) {
-            res.send("cant post jeton ", err);
+            return res.status(400).json({
+                status: 'error',
+                error: 'req body cannot be empty',
+            });
         }
-        res.status(200).send({ message: 'true' })
+        jetons.jetonsdemande = req.body.jetonsdemande;
+        jetons.statut = req.body.statut;
+        jetons.emailuser = user.email;
+        console.log(jetons);
+        jetons.save((err) => {
+            if (err) {
+                res.send("cant post jeton ", err);
+            }
+            res.status(200).send({ message: 'true' })
+        });
     });
 };
 function updateStatutJeton(req, res) {

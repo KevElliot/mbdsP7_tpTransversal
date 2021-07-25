@@ -29,4 +29,11 @@ class Match {
         equipe1 lazy: false
         equipe2 lazy: false
     }
+    Integer getMatchEquipe1Count(Equipe equipe) {
+        Match.countByEquipe1(equipe)
+    }
+    Integer getMatchEquipe2Count(Equipe equipe) {
+        Match.countByEquipe2(equipe)
+    }
+
 }

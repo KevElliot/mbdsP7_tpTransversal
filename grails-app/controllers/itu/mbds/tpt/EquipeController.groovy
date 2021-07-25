@@ -89,6 +89,7 @@ class EquipeController {
         }
     }
 
+
     protected void notFound() {
         request.withFormat {
             form multipartForm {

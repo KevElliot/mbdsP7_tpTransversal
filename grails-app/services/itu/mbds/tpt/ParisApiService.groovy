@@ -2,6 +2,7 @@ package itu.mbds.tpt
 
 import grails.gorm.transactions.Transactional
 import org.grails.web.json.JSONArray
+import java.text.DecimalFormat;
 
 @Transactional
 class ParisApiService {
@@ -30,10 +31,17 @@ class ParisApiService {
                     }
                     nbcotegloval=nbcotegloval*detailsparis.cote
             }
-            paris.coteglobal=nbcotegloval
+            DecimalFormat df = new DecimalFormat("#.00");
+            String coteglobal=df.format(nbcotegloval).replace(',','.')
+            paris.coteglobal=Float.parseFloat(coteglobal)
             paris.gainpossible=paris.coteglobal*paris.mise
+            String gainpossible=df.format(paris.gainpossible).replace(',','.')
+            paris.gainpossible= Double.parseDouble(gainpossible)
             paris.save(failOnError:true)
             paris.errors.allErrors
         }
+    }
+    def updateDetailsParisKO(String prono, Long match_id) {
+        Detailsparis.executeUpdate("update Detailsparis set gain='KO' where prono <> :prono and match.id= :idmatch",[prono:prono, idmatch:match_id])
     }
 }

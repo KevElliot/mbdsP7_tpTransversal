@@ -44,13 +44,10 @@ class MatchApiController {
                     println "BAD REQUEST"
                     return response.status = HttpServletResponse.SC_BAD_REQUEST
                 }
-                println matchAsJson.cotev1
                 def matchInstance = Match.get(matchAsJson.id)
-                println matchAsJson.cotex
                 if (!matchInstance){
                     return response.status = HttpServletResponse.SC_NOT_FOUND
                 }
-                println matchAsJson.cotev2
                 Equipe equipe1 = Equipe.get(matchAsJson.equipe1.id)
                 Equipe equipe2 = Equipe.get(matchAsJson.equipe2.id)
                 matchInstance.equipe1=equipe1
@@ -58,11 +55,10 @@ class MatchApiController {
                 matchInstance.cotev1=matchAsJson.cotev1
                 matchInstance.cotex=matchAsJson.cotex
                 matchInstance.cotev2=matchAsJson.cotev2
+                println match.datematch
                 matchInstance.datematch=match.datematch
                 matchInstance.lieumatch=matchAsJson.lieumatch
-                println matchAsJson.cotev1
                 matchApiService.save(matchInstance)
-                println matchAsJson.cotex
 
                 response.withFormat {
                     json { render matchInstance as JSON }
@@ -163,11 +159,15 @@ class MatchApiController {
         }
     }
     def count() {
-        def matchsInstance = Match.count()
-                response.withFormat {
-                    json { render matchsInstance as JSON }
-                }
-        serializeData(matchsInstance, request.getHeader("Accept"))
+        def matchsInstance = matchApiService.contListeTotal(Integer.parseInt(params.idequipe),Integer.parseInt(params.fini))
+        println matchsInstance
+        render matchsInstance
+    }
+    def filtre() {
+        def matchsInstance = matchApiService.listeTotalPagine(Integer.parseInt(params.idequipe),Integer.parseInt(params.fini),Integer.parseInt(params.first),Integer.parseInt(params.max))
+        response.withFormat {
+            json { render matchsInstance as JSON }
+        }
     }
     def resultat(){
         if(request.getMethod()=="PUT"){
@@ -181,9 +181,12 @@ class MatchApiController {
             }
             match.id=matchAsJson.id
             match.but1=matchAsJson.but1
-            match.but2=matchAsJson.bu2
-            def matchResult=matchApiService.resultat(match)
-            if(matchResult){
+            match.but2=matchAsJson.but2
+            def listCapital=matchApiService.resultat(match)
+            if(listCapital){
+                response.withFormat {
+                    json { render listCapital as JSON }
+                }
                 return response.status = HttpServletResponse.SC_OK
             }
 

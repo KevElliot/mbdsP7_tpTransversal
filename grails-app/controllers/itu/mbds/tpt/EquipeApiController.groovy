@@ -5,11 +5,12 @@ import grails.converters.XML
 import grails.gorm.transactions.Transactional
 import org.springframework.web.bind.annotation.CrossOrigin
 import javax.servlet.http.HttpServletResponse
+import groovy.sql.Sql
+
 
 @CrossOrigin(origins="*")
 @Transactional
 class EquipeApiController {
-
     EquipeService equipeService
     EquipeApiService equipeApiService
     def equipe() {
@@ -116,6 +117,10 @@ class EquipeApiController {
                 break
         }
     }
+    def testUpdate(){
+       // Detailsparis.executeUpdate("update Detailsparis dp set gain='KO' where dp.prono='V2' or dp.prono='X' and dp.match.id=41")
+    }
+
     def serializeData(object, format) {
         switch (format) {
             case 'json':

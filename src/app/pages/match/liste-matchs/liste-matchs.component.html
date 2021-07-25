@@ -1,0 +1,109 @@
+<div class="row mb-1 ml-0 mr-0 box-shadow">
+  <div class="m-auto ">
+    <i *ngIf="showSearch" class="fa fa-sort-up" (click)="afficheSearch()"></i>
+    <i *ngIf="!showSearch" class="fa fa-sort-down" (click)="afficheSearch()"></i>
+  </div>
+</div>
+<div class="row" *ngIf="showSearch">
+  <div class="col-12 mb-0">
+    <div widget class="card border-0 box-shadow">
+      <div class="card-header transparent border-0 text-muted">
+        <h5 class="mb-0">Filtrer par</h5>
+      </div>
+      <div class="card-block pt-0 widget-body">
+        <form class="form" id="add-form" [formGroup]="recherche" (ngSubmit)="countMatch()">
+          <div class="row ml-1 mr-1">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="equipe">Equipe :</label>
+                <select class="form-control form-control-sm" formControlName="equipe">
+                  <option [value]=0>Toutes</option>
+                  <option *ngFor="let equipe of equipes"
+                          [value]="equipe.id">{{equipe.nom}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="fini">Date de match :</label>
+                <select class="form-control form-control-sm" name="fini" formControlName="fini">
+                  <option [value]=1>Terminés</option>
+                  <option [value]=0>Prochains</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row ml-1 mr-1">
+            <div class="col-sm-12 text-right py-1">
+
+              <button type="submit" class="btn btn-sm btn-primary">Rechercher</button>
+              <button type="button"
+                      class="btn btn-sm ml-1 btn-secondary" (click)="reinitialiser()">Réinitialiser
+              </button>
+
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="table-responsive bg-white box-shadow">
+      <table class="table table-sm">
+        <thead>
+        <tr>
+          <th>Equipe 1</th>
+          <th>Cote V1</th>
+          <th>Cote X</th>
+          <th>Cote V2</th>
+          <th>Equipe 2</th>
+          <th style="text-align: center">Statut</th>
+          <th style="text-align: center">Score</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let match of matchs">
+          <td>{{match.equipe1?.nom}}</td>
+          <td>{{match.cotev1}}</td>
+          <td>{{match.cotex}}</td>
+          <td>{{match.cotev2}}</td>
+          <td>{{match.equipe2?.nom}}</td>
+          <td style="text-align: center">
+            <i title="Terminé" *ngIf="match.fini==1" class="fa fa-check-circle text-success"></i>
+            <i title="En cours" *ngIf="match.fini==0" class="fa fa-spinner"></i>
+          </td>
+          <td style="text-align: center" *ngIf="match.fini==1">
+            {{match.but1}} - {{match.but2}}
+          </td>
+          <td style="text-align: center" *ngIf="match.fini==0">
+             -
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <nav aria-label="Page navigation example">
+        <ul *ngIf="pager.pages && pager.pages.length && pager.totalPages>1"
+            class="pagination justify-content-center">
+          <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item disabled">
+            <a (click)="setPage(0)" class="page-link" tabindex="-1" mdbWavesEffect>Premier</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item disabled">
+            <a (click)="setPage(pager.currentPage - 1)" class="page-link" tabindex="-1" mdbWavesEffect>Précédent</a>
+          </li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}"
+              class="page-item">
+            <a (click)="setPage(+page)" class="page-link" mdbWavesEffect>{{page}}</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item">
+            <a (click)="setPage(pager.currentPage + 1)" class="page-link" mdbWavesEffect>Suivant</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item">
+            <a (click)="setPage(pager.totalPages)" class="page-link" mdbWavesEffect>Dernier</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>

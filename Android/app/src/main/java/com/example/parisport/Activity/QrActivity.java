@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -30,11 +32,15 @@ public class QrActivity extends AppCompatActivity {
     private CodeScanner mCodeScanner;
     boolean CameraPermission = false;
     final int CAMERA_PERM = 1;
+    SharedPreferences sharedPreferences;
+    public static final String SHARED_PREFS = "shared_prefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr);
+
+        sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(QrActivity.this,scannerView);
@@ -59,11 +65,11 @@ public class QrActivity extends AppCompatActivity {
                         @Override
                         public void run() {
 
+                            String tmp = result.getText();
                             // get text to USE
+                            Service.loginQR(tmp,sharedPreferences, getApplicationContext());
                             Toast.makeText(QrActivity.this, result.getText(), Toast.LENGTH_LONG).show();
                             // Use service
-
-
                         }
                     });
 

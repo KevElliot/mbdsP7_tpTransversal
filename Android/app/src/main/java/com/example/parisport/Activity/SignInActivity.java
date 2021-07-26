@@ -2,6 +2,7 @@ package com.example.parisport.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,13 +23,12 @@ import com.example.parisport.Service.Service;
 public class SignInActivity extends AppCompatActivity {
 
     EditText edtEmail, edtPassword;
-
     ImageView backButton;
     ImageView qrButton;
     Button inButton;
     TextView register;
     SharedPreferences sharedPreferences;
-    Service service;
+    public static final String SHARED_PREFS = "shared_prefs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,8 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
 
         AndroidNetworking.initialize(getApplicationContext());
+
+        sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
         // initialisation
         edtEmail = (EditText) findViewById(R.id.editTextTextPersonName);

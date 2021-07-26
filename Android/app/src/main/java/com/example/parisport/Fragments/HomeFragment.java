@@ -5,11 +5,14 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ProgressBar;
 
 import com.example.parisport.Activity.MatchActivity;
 import com.example.parisport.Adapter.ListMatchAdapter;
@@ -23,6 +26,7 @@ import com.example.parisport.databinding.FragmentHomeBinding;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TreeMap;
 
 public class HomeFragment extends Fragment {
 
@@ -33,6 +37,58 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
+        /*
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Service.getAllMatchFoot(new async_call_back() {
+                            @Override
+                            public void getAllMatchFoot(ArrayList<MatchFoot> matchFootArrayList) {
+                                ListMatchAdapter listMatchAdapter = new ListMatchAdapter(getActivity(), matchFootArrayList);
+
+                                int i = listMatchAdapter.getCount();
+
+
+
+                                binding.listHome.setAdapter(listMatchAdapter);
+                                binding.listHome.setClickable(true);
+                                binding.listHome.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                        Log.i("ONCLICK LISTENER", String.valueOf((position)));
+
+                                        Intent i = new Intent(getActivity(), MatchActivity.class);
+
+                                        i.putExtra("lieuMatch", matchFootArrayList.get(position).getLieuMatch());
+                                        i.putExtra("dateMatch", matchFootArrayList.get(position).getDateMatch());
+                                        i.putExtra("equipe1", matchFootArrayList.get(position).getEquipe1().getNom());
+                                        i.putExtra("equipe2", matchFootArrayList.get(position).getEquipe2().getNom());
+                                        i.putExtra("cotev1", matchFootArrayList.get(position).getCotev1());
+                                        i.putExtra("cotev2", matchFootArrayList.get(position).getCotev2());
+                                        i.putExtra("cotex", matchFootArrayList.get(position).getCotex());
+                                        i.putExtra("resultat", matchFootArrayList.get(position).getResultat());
+
+                                        startActivity(i);
+                                    }
+                                });
+                            }
+                        });
+                        try {
+                            Thread.sleep(100);
+                        }catch (InterruptedException e){
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+            }
+        });
+
+         */
 
         // get listes matchs from API
         Service.getAllMatchFoot(new async_call_back() {
@@ -50,14 +106,15 @@ public class HomeFragment extends Fragment {
 
                         Intent i = new Intent(getActivity(), MatchActivity.class);
 
-                i.putExtra("lieuMatch", matchFootArrayList.get(position).getLieuMatch());
-                i.putExtra("dateMatch", matchFootArrayList.get(position).getDateMatch());
-                i.putExtra("equipe1", matchFootArrayList.get(position).getEquipe1().getNom());
-                i.putExtra("equipe2", matchFootArrayList.get(position).getEquipe2().getNom());
-                i.putExtra("cotev1", matchFootArrayList.get(position).getCotev1());
-                i.putExtra("cotev2", matchFootArrayList.get(position).getCotev2());
-                i.putExtra("cotex", matchFootArrayList.get(position).getCotex());
-                i.putExtra("resultat", matchFootArrayList.get(position).getResultat());
+                        i.putExtra("id", matchFootArrayList.get(position).getId());
+                        i.putExtra("lieuMatch", matchFootArrayList.get(position).getLieuMatch());
+                        i.putExtra("dateMatch", matchFootArrayList.get(position).getDateMatch());
+                        i.putExtra("equipe1", matchFootArrayList.get(position).getEquipe1().getNom());
+                        i.putExtra("equipe2", matchFootArrayList.get(position).getEquipe2().getNom());
+                        i.putExtra("cotev1", matchFootArrayList.get(position).getCotev1());
+                        i.putExtra("cotev2", matchFootArrayList.get(position).getCotev2());
+                        i.putExtra("cotex", matchFootArrayList.get(position).getCotex());
+                        i.putExtra("resultat", matchFootArrayList.get(position).getResultat());
 
                         startActivity(i);
                     }
@@ -65,33 +122,6 @@ public class HomeFragment extends Fragment {
             }
 
         });
-
-        /*
-        // getListMatch from database
-        ArrayList<MatchFoot> matchFootArrayList = new ArrayList<>();
-
-        float[] ct1 = {1,2,2,3,5,6,7,8,9};
-        float[] ct2 = {4,5,7,7,6,2,7,2,1};
-        float[] ctx = {7,8,6,8,9,3,5,7,8};
-        String[] lieuM = {"A","B","B","B","B","B","B","B","B"};
-        String[] resultat = {"OK","NOT OK","NOT OK","NOT OK","NOT OK","NOT OK","NOT OK","NOT OK","NOT OK"};
-
-        Equipe tmp1 = new Equipe(1, "Italy",10);
-        Equipe tmp2 = new Equipe(2,"France",8);
-
-        Date date = new Date(System.currentTimeMillis());
-
-        for(int i = 0; i<9;i++){
-            MatchFoot tmp = new MatchFoot(i, tmp1, tmp2, ct1[i], ct2[i], ctx[i], date, lieuM[i], resultat[i]);
-            matchFootArrayList.add(tmp);
-        }
-
-
-         */
-        // Log.i("TAILLE : ","zavatra_"+list.size());
-
-        // ListMatchAdapter listMatchAdapter = new ListMatchAdapter(getActivity(), matchFootArrayList);
-
 
         return view;
 
@@ -101,10 +131,6 @@ public class HomeFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
-    }
-
-    private void sendData(MatchFoot matchFoot){
-
     }
 
 

@@ -12,6 +12,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TableLayout;
+import android.widget.TextView;
 
 
 import com.androidnetworking.AndroidNetworking;
@@ -51,6 +53,7 @@ import static android.content.ContentValues.TAG;
 public class HomeActivity extends AppCompatActivity {
 
     private boolean isChecked = false;
+    public static final String SHARED_PREFS = "shared_prefs";
     SharedPreferences sharedPreferences;
     Intent intent;
 
@@ -61,6 +64,8 @@ public class HomeActivity extends AppCompatActivity {
         // initialisation network
 
         AndroidNetworking.initialize(getApplicationContext());
+
+        sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
         DrawerLayout drawerLayout = findViewById(R.id.drawerLayout);
 
@@ -77,6 +82,11 @@ public class HomeActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.END);
             }
         });
+
+        String account = sharedPreferences.getString("name","");
+        setMyaccount(account);
+        String money = String.valueOf(sharedPreferences.getFloat("jetons",0.0f));
+        setMymoney(money);
 
         // navDetailsHostFragment
 
@@ -95,6 +105,18 @@ public class HomeActivity extends AppCompatActivity {
         *         */
     }
 
+    public void setMyaccount(String x){
+        TextView myaccount;
+        myaccount = findViewById(R.id.myaccount);
+        myaccount.setText(x);
+    }
+
+    public void setMymoney(String x){
+        TextView mymoney;
+        mymoney = findViewById(R.id.mymoney);
+        mymoney.setText(x);
+    }
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem checkable = menu.findItem(R.id.checkable_menu);
@@ -106,9 +128,10 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.checkable_menu:
+                Log.i("LOUTOUT", "TONGA CHECKED");
                 isChecked = !item.isChecked();
                 item.setChecked(isChecked);
-                Service.logout(sharedPreferences);
+                Service.logout(sharedPreferences, HomeActivity.this);
                 return true;
             default:
                 return false;

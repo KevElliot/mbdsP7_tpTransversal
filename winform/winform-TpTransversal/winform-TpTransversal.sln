@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31410.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "winform-TpTransversal", "winform-TpTransversal.csproj", "{D02F1351-6D8D-4DDF-ABF7-608A20D5714F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D02F1351-6D8D-4DDF-ABF7-608A20D5714F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D02F1351-6D8D-4DDF-ABF7-608A20D5714F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D02F1351-6D8D-4DDF-ABF7-608A20D5714F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D02F1351-6D8D-4DDF-ABF7-608A20D5714F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {86226DAC-F66B-40CB-8286-460CF4E23C1A}
+	EndGlobalSection
+EndGlobal

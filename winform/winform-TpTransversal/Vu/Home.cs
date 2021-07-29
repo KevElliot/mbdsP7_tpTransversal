@@ -343,9 +343,18 @@ namespace winform_TpTransversal.Vu
 
         private async void placerPariBtn_Click(object sender, EventArgs e)
         {
+            this.panelChargement.Visible = true;
+            Button btn = sender as Button;
+            btn.Text = "En attente";
+            btn.Enabled = false;
+            UseWaitCursor = true;
             String res="";
             if (this.allPari.Count < 1 || totalMise>this.user.jetons)
             {
+                this.panelChargement.Visible = false;
+                btn.Text = "Placer vos paris";
+                btn.Enabled = true;
+                UseWaitCursor = false;
                 MessageBox.Show("Veuillez placer votre pari! ou verifier que vos jetons sont suffisants");
             }
             else
@@ -353,7 +362,6 @@ namespace winform_TpTransversal.Vu
                 //Parie non grouper
                 if (!this.gouperPari.Checked)
                 {
-                    Console.WriteLine("ID ANY TOM: "+this.user._id);
                     for (int i = 0; i < this.allPari.Count; i++)
                     {
                         res = await serviceGrails.PlacerPari(allPari[i]);
@@ -381,12 +389,19 @@ namespace winform_TpTransversal.Vu
             // utilisateur non connecté
             if (res == "900")
             {
+                btn.Text = "Placer vos paris";
+                btn.Enabled = true;
+                UseWaitCursor = false;
                 login = new Login();
                 login.Show();
                 Hide();
             }
             else if (res == "200")
             {
+                this.panelChargement.Visible = false;
+                btn.Text = "Placer vos paris";
+                btn.Enabled = true;
+                UseWaitCursor = false;
                 MessageBox.Show("Vos paris ont bien été placer!");
                 this.Close();
                 this.allPari = new List<Model.Pari>();

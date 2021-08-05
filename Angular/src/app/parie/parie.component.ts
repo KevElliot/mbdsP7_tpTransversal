@@ -38,7 +38,8 @@ export class ParieComponent implements OnInit, OnDestroy {
       this.dtTrigger.next();
       console.log(this.match)
     }, error => {
-      window.location.reload();
+      //window.location.reload();
+      console.log("Verrifier le serveur "+ error);
     });
   }
   setter(cote, choix) {

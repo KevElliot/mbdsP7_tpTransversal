@@ -41,7 +41,8 @@ export class HistoriqueParieComponent implements OnInit {
       this.dtTrigger.next();
       console.log(this.historique);
     }, error => {
-      window.location.reload();
+      //window.location.reload();
+      console.log("Verrifier le serveur");
     });
   }
 

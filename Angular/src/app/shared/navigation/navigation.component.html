@@ -16,6 +16,14 @@
         </a>
     </li>
 
+    <hr class="sidebar-divider">
+    <li class="nav-item">
+        <a class="nav-link" href="/pari">
+            <i class="fas fa-fw fa-list"></i>
+            <span>Faire un pari</span>
+        </a>
+    </li>
+
     <hr class="sidebar-divider" *ngIf="isConnect">
     <li class="nav-item" *ngIf="isConnect">
         <a routerLink="/profil/{{this.idUser}}" class="nav-link">
@@ -32,20 +40,14 @@
         </a>
     </li>
 
-    <hr class="sidebar-divider">
-    <li class="nav-item">
+    <hr class="sidebar-divider" *ngIf="isConnect">
+    <li class="nav-item" *ngIf="isConnect">
         <a class="nav-link" href="/historique">
             <i class="fas fa-fw fa-list"></i>
             <span>Historique de vos paris</span>
         </a>
     </li>
-    <hr class="sidebar-divider">
-    <li class="nav-item">
-        <a class="nav-link" href="/pari">
-            <i class="fas fa-fw fa-list"></i>
-            <span>Pari par victoire</span>
-        </a>
-    </li>
+    
 
     <hr class="sidebar-divider">
     <li class="nav-item" *ngIf="isConnect">

@@ -19,6 +19,14 @@ public class User {
         this.image = image;
     }
 
+    public User(String name, String email, String password, String role, int jetons) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.jetons = jetons;
+    }
+
     public User(String email, String password) {
         this.email = email;
         this.password = password;

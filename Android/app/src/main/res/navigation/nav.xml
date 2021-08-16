@@ -24,5 +24,10 @@
         android:name="com.example.parisport.Fragments.HistoriqueFragment"
         android:label="fragment_historique"
         tools:layout="@layout/fragment_historique" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.parisport.Fragments.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
 
 </navigation>

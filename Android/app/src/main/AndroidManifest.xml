@@ -11,8 +11,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PariSport">
-        <activity android:name=".Activity.RegisterActivity"></activity>
+        android:theme="@style/Theme.PariSport"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.JetonActivity"></activity>
+        <activity android:name=".Activity.ProfilActivity" />
+        <activity android:name=".Activity.RegisterActivity" />
         <activity android:name=".Activity.HistoActivity" />
         <activity android:name=".Activity.MatchActivity" />
         <activity android:name=".Activity.QrActivity" />

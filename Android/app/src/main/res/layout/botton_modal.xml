@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/modalBottomSheetContainer"
-    android:background="@color/colorAccent"
+    android:background="@color/grey"
     android:padding="15dp">
     <TextView
         android:layout_width="match_parent"
@@ -14,7 +14,8 @@
         android:text="PLACER VOTRE PARI"
         android:textSize="20sp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/black_light"
+        android:fontFamily="@font/bold"
         android:layout_gravity="center"
         android:gravity="center"/>
     <LinearLayout
@@ -22,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
+
         <LinearLayout
             android:id="@+id/betEquipe1"
             android:layout_width="wrap_content"
@@ -46,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rakotokapokagenbout"
-                android:textSize="13sp"
+                android:fontFamily="@font/regular"
                 android:padding="2dp"
                 android:layout_marginTop="10dp"/>
         </LinearLayout>
@@ -73,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="vs"
-                android:textSize="13sp"
+                android:fontFamily="@font/regular"
                 android:padding="2dp"
                 android:layout_marginTop="10dp"/>
         </LinearLayout>
@@ -102,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="azertyisdnflsqbdfklqsdfbs"
-                android:textSize="13sp"
+                android:fontFamily="@font/regular"
                 android:padding="2dp"
                 android:layout_marginTop="10dp"/>
         </LinearLayout>
@@ -113,15 +115,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
 
+
         <EditText
             android:id="@+id/betMoney"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="numberDecimal"
-            android:background="@drawable/input_field"
-            android:ems="10"
+            android:hint="mise"
+            android:textAlignment="center"
             android:fontFamily="@font/regular"
-            android:textColorHint="@color/grey"
+            android:textColorHint="@color/grey_back"
             app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.414"

@@ -1,31 +1,34 @@
 package com.example.parisport.Modele;
 
-import java.util.ArrayList;
 import java.util.Date;
 
-public class MatchFoot {
+public class Match {
 
     private int id;
     private Equipe equipe1;
     private Equipe equipe2;
-    private float cotev1;
-    private float cotev2;
-    private float cotex;
+    private Float cotev1;
+    private Float cotev2;
+    private Float cotex;
     private Date dateMatch;
     private String lieuMatch;
     private String resultat;
 
-    public MatchFoot() {
+    public Match(int id) {
+        this.id = id;
     }
 
-    public MatchFoot(int id, Equipe equipe1, Equipe equipe2, float cotev1, float cotev2, float cotex, Date dateMatch, String lieuMatch, String resultat) {
+    public Match() {
+    }
+
+    public Match(int id, Equipe equipe1, Equipe equipe2, float cotev1, float cotev2, float cotex, Date datematch, String lieuMatch, String resultat) {
         this.id = id;
         this.equipe1 = equipe1;
         this.equipe2 = equipe2;
         this.cotev1 = cotev1;
         this.cotev2 = cotev2;
         this.cotex = cotex;
-        this.dateMatch = dateMatch;
+        this.dateMatch = datematch;
         this.lieuMatch = lieuMatch;
         this.resultat = resultat;
     }

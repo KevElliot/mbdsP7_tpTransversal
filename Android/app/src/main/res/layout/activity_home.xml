@@ -62,10 +62,23 @@
                     android:textSize="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.863"
+                    app:layout_constraintHorizontal_bias="0.847"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0" />
+
+                <ImageView
+                    android:layout_width="6dp"
+                    android:layout_height="10dp"
+                    android:maxWidth="8dp"
+                    android:maxHeight="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.868"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/ic_jeton" />
 
                 <ImageView
                     android:id="@+id/imageProfil"
@@ -123,6 +136,7 @@
         app:menu="@menu/menu_top_nav"
         app:headerLayout="@layout/navigation_header"/>
 
+    <!--
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationProfilNav"
         android:layout_width="wrap_content"
@@ -131,6 +145,7 @@
         android:fitsSystemWindows="true"
         app:menu="@menu/menu_profil_nav"
         app:headerLayout="@layout/navigation_profil"/>
+    -->
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

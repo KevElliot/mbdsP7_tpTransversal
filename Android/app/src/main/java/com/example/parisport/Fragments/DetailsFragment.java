@@ -19,13 +19,6 @@ public class DetailsFragment extends Fragment {
 
     private FragmentDetailsBinding binding;
 
-    /**
-     * @param inflater 0
-     * @param container
-     * @param savedInstanceState
-     * @return
-     */
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 

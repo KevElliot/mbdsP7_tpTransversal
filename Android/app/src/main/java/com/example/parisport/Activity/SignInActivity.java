@@ -16,9 +16,16 @@ import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.example.parisport.Interface.async_call_back_login;
+import com.example.parisport.Interface.async_call_back_paris;
+import com.example.parisport.Modele.HistoriquePari;
 import com.example.parisport.Modele.User;
 import com.example.parisport.R;
 import com.example.parisport.Service.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -37,6 +44,19 @@ public class SignInActivity extends AppCompatActivity {
 
         AndroidNetworking.initialize(getApplicationContext());
 
+        List<HistoriquePari> historiquePariList = Service.getHistoriqueParisToJson();
+
+        Log.d(TAG, "HISTO SIZE() : "+historiquePariList.size());
+
+        /*
+        Service.getListesParisParClient(new async_call_back_paris() {
+            @Override
+            public void getListesParisParClient(ArrayList<HistoriquePari> parisArrayList) {
+                Log.d(TAG, "HISTO SIZE() : "+parisArrayList.size());
+            }
+        });
+         */
+
         sharedPreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
         // initialisation
@@ -48,7 +68,7 @@ public class SignInActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SignInActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(SignInActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });
@@ -59,40 +79,10 @@ public class SignInActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                /*
-                Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
-                startActivity(intent);
-                */
                 String email = edtEmail.getText().toString();
                 String password = edtPassword.getText().toString();
 
                 Service.loginPost(email, password, sharedPreferences, getApplicationContext());
-
-                // Service.loginPost();
-
-                /*
-                // get
-                String email = edtEmail.getText().toString();
-                String password = edtPassword.getText().toString();
-
-                boolean verification;
-                verification = Service.loginPost(email, password);
-                Log.i("Verification : ","Boolean : "+verification);
-
-                if(verification){
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("useremail", email);
-                    editor.putString("userpassword", password);
-                    editor.commit();
-                    Toast.makeText(getApplicationContext(), "Login Successful"+email+"_"+password+"AUTH : "+verification,Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(SignInActivity.this, HomeActivity.class);
-                    startActivity(intent);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"Credentials are not valid"+email+"_"+password+"AUTH : "+verification,Toast.LENGTH_SHORT).show();
-                }
-
-                 */
 
             }
         });

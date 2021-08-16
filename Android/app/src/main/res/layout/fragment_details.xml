@@ -6,99 +6,132 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.DetailsFragment">
 
-    <TextView
-        android:id="@+id/detailsLieuMatch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="detailsLieuMatch"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.262" />
-
-    <TextView
-        android:id="@+id/detailsEquipe1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="detailsEquipe1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailsLieuMatch"
-        app:layout_constraintVertical_bias="0.094" />
-
-
-    <TextView
-        android:id="@+id/detailsEquipe2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="detailsEquipe2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailsEquipe1"
-        app:layout_constraintVertical_bias="0.125" />
 
     <TextView
         android:id="@+id/detailsDateMatch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="detailsDateMatch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailsEquipe2"
-        app:layout_constraintVertical_bias="0.112" />
-
-    <TextView
-        android:id="@+id/detailsCotev1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="detailsCotev1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailsDateMatch"
-        app:layout_constraintVertical_bias="0.16" />
+        app:layout_constraintVertical_bias="0.117" />
 
     <TextView
         android:id="@+id/detailsCotev2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/light"
+        android:gravity="center"
         android:text="detailsCotev2"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailsDateMatch"
-        app:layout_constraintVertical_bias="0.16" />
+        app:layout_constraintVertical_bias="0.158" />
 
     <TextView
         android:id="@+id/detailsCotex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/light"
+        android:gravity="center"
         android:text="detailsCotex"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.825"
+        app:layout_constraintHorizontal_bias="0.872"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/detailsDateMatch"
-        app:layout_constraintVertical_bias="0.16" />
+        app:layout_constraintVertical_bias="0.158" />
+
+    <TextView
+        android:id="@+id/detailsEquipe1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bold"
+        android:gravity="center"
+        android:text="detailsEquipe1"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsLieuMatch"
+        app:layout_constraintVertical_bias="0.098" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/regular"
+        android:gravity="center"
+        android:text="VS"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/detailsEquipe2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsEquipe1"
+        app:layout_constraintVertical_bias="0.588" />
 
     <TextView
         android:id="@+id/detailsResultat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="detailsResultat"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.727" />
+        app:layout_constraintVertical_bias="0.778" />
+
+    <TextView
+        android:id="@+id/detailsEquipe2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bold"
+        android:gravity="center"
+        android:text="detailsEquipe2"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsEquipe1"
+        app:layout_constraintVertical_bias="0.151" />
+
+    <TextView
+        android:id="@+id/detailsCotev1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/light"
+        android:gravity="center"
+        android:text="detailsCotev1"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailsDateMatch"
+        app:layout_constraintVertical_bias="0.158" />
+
+    <TextView
+        android:id="@+id/detailsLieuMatch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="detailsLieuMatch"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.231" />
+
     <!--  -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

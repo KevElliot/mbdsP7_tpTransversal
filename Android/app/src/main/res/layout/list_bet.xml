@@ -27,36 +27,42 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_gravity="center"
                     android:orientation="vertical">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imageEquipe1"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:src="@drawable/ballon"/>
 
+                    <TextView
+                        android:id="@+id/betProno"
+                        android:fontFamily="@font/regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Equipe 1"/>
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="215dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/stadeDomicile"
+                        android:id="@+id/betStadeDomicile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/bold"
-                        android:text="Stade Santiago Bernabéu"/>
+                        android:text="Stade Santiago Bernabéu"
+                        android:textSize="14sp" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <TextView
-                            android:id="@+id/equipe1"
+                            android:id="@+id/betEquipe1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/light"
@@ -72,7 +78,7 @@
                             android:text="vs" />
 
                         <TextView
-                            android:id="@+id/equipe2"
+                            android:id="@+id/betEquipe2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/light"
@@ -80,38 +86,46 @@
 
                     </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/dateMatch"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/thin"
-                        android:layout_alignParentRight="true"
-                        android:text="8:35 pm" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/thin"
+                            android:layout_alignParentRight="true"
+                            android:text="Cote : " />
+
+                        <TextView
+                            android:id="@+id/betCote"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:fontFamily="@font/regular"
+                            android:text="x" />
+
+                        <TextView
+                            android:layout_marginStart="50dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/thin"
+                            android:layout_alignParentRight="true"
+                            android:text="Gain : " />
+
+                        <TextView
+                            android:id="@+id/betGain"
+                            android:layout_width="wrap_content"
+                            android:fontFamily="@font/regular"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:text="x" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
-                <!--
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/imageEquipe2"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/qr"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Equipe 2"
-                        android:id="@+id/equipe2TextView"/>
-
-                </LinearLayout>
-                -->
 
             </LinearLayout>
 
@@ -128,14 +142,17 @@
                     android:layout_marginEnd="20dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/resultatMatch"
+                    <EditText
+                        android:id="@+id/betChangeMise"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Resultat de match"
+                        android:inputType="numberDecimal"
+                        android:hint="mise"
+                        android:textColor="@color/grey_back"
+                        android:textColorHint="@color/grey_back"
                         android:textAlignment="center"
                         android:fontFamily="@font/regular"/>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -144,39 +161,39 @@
                         android:orientation="horizontal">
 
                         <Button
-                            android:id="@+id/equipe1Win"
+                            android:id="@+id/betMiser"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:layout_marginEnd="10dp"
                             android:fontFamily="@font/regular"
+                            android:layout_marginEnd="10dp"
                             android:layout_weight="1"
                             android:focusable="false"
-                            android:text="quot 1" />
+                            android:text="Miser" />
 
-                        <Button
-                            android:id="@+id/equipeDraw"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:fontFamily="@font/regular"
-                            android:layout_marginEnd="10dp"
-                            android:layout_weight="1"
-                            android:focusable="false"
-                            android:text="quot X" />
 
-                        <Button
-                            android:id="@+id/equipe2Win"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="10dp"
-                            android:fontFamily="@font/regular"
-                            android:layout_marginEnd="10dp"
-                            android:layout_weight="1"
-                            android:focusable="false"
-                            android:text="quot 2" />
                     </LinearLayout>
 
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/betDelete"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:fontFamily="@font/regular"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="1"
+                            android:focusable="false"
+                            android:text="Supprimer" />
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
